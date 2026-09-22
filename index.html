@@ -579,7 +579,9 @@ async function loadLivePicks() {
     const text = await res.text();
     const rows = parseCSV(text);
     contentEl.innerHTML = renderLivePicksTable(rows);
-    const count = Math.max(0, rows.length - 1);
+    // Count unique named submitters only — blank filler rows in the sheet shouldn't inflate this.
+    const names = new Set((rows.slice(1) || []).map(r => (r[1] || '').trim()).filter(Boolean));
+    const count = names.size;
     tagEl.textContent = count === 0 ? 'No picks yet' : (count + (count === 1 ? ' pick set in' : ' picks in'));
   } catch (err) {
     // Claude's own artifact sandbox blocks this kind of outbound fetch, so this view
