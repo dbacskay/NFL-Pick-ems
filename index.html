@@ -245,6 +245,7 @@
 
   <div class="tab-panel active" id="tab-leaderboard">
     <div id="live-picks"></div>
+    <div id="live-standings"></div>
     <div id="content"></div>
     <div class="footer-note" id="footer-note"></div>
   </div>
@@ -615,6 +616,113 @@ async function loadLivePicks() {
   }
 }
 
+// ---------- Live standings — grades finished games straight from ESPN's public scoreboard ----------
+// No API key needed; this is the same feed ESPN's own site uses. Only counts games that
+// have actually finished (status "post") — in-progress games don't flip anyone's count.
+const SEASON_YEAR = 2026;
+function espnScoreboardUrl() {
+  return `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=${CURRENT_WEEK}&seasontype=2&dates=${SEASON_YEAR}`;
+}
+
+function renderLiveStandingsShell() {
+  const el = document.getElementById('live-standings');
+  if (!el) return;
+  el.innerHTML = `
+    <div class="card">
+      <div class="week-header">
+        <h2 style="margin:0;">Week ${CURRENT_WEEK} — Live Standings</h2>
+        <span class="tag" id="live-standings-tag">Loading…</span>
+      </div>
+      <div id="live-standings-content"><p class="muted">Loading…</p></div>
+    </div>`;
+}
+
+async function loadLiveGrades() {
+  renderLiveStandingsShell();
+  const contentEl = document.getElementById('live-standings-content');
+  const tagEl = document.getElementById('live-standings-tag');
+  try {
+    const [scoreRes, picksRes] = await Promise.all([
+      fetch(espnScoreboardUrl() + '&_=' + Date.now(), { cache: 'no-store' }),
+      fetch(PICKS_CSV_URL + '&nocache=' + Date.now(), { cache: 'no-store' })
+    ]);
+    if (!scoreRes.ok) throw new Error('ESPN HTTP ' + scoreRes.status);
+    if (!picksRes.ok) throw new Error('Picks HTTP ' + picksRes.status);
+    const scoreData = await scoreRes.json();
+    const picksText = await picksRes.text();
+
+    const events = scoreData.events || [];
+    const results = GAMES.map(g => {
+      const ev = events.find(e => {
+        const comps = (e.competitions && e.competitions[0] && e.competitions[0].competitors) || [];
+        const names = comps.map(c => c.team && c.team.displayName);
+        return names.includes(g.away) && names.includes(g.home);
+      });
+      if (!ev) return { ...g, decided: false, winner: null, actualTotal: null };
+      const comp = ev.competitions[0];
+      const state = comp.status && comp.status.type && comp.status.type.state; // 'pre' | 'in' | 'post'
+      const comps = comp.competitors || [];
+      const scores = {};
+      comps.forEach(c => { scores[c.team.displayName] = Number(c.score); });
+      const decided = state === 'post';
+      let winner = null;
+      if (decided) {
+        winner = scores[g.home] > scores[g.away] ? g.home : (scores[g.away] > scores[g.home] ? g.away : 'TIE');
+      }
+      const actualTotal = (scores[g.home] != null && scores[g.away] != null) ? (scores[g.home] + scores[g.away]) : null;
+      return { ...g, decided, winner, actualTotal, state };
+    });
+
+    const decidedCount = results.filter(r => r.decided).length;
+    const tiebreakerResult = results.find(r => r.tiebreaker);
+
+    const rows = parseCSV(picksText);
+    const dataRows = rows.slice(1);
+    const byName = new Map();
+    dataRows.forEach(r => { const name = (r[1] || '').trim(); if (name) byName.set(name, r); });
+
+    const standings = Array.from(byName.values()).map(r => {
+      let correct = 0;
+      GAMES.forEach((g, i) => {
+        const res = results[i];
+        if (res.decided && res.winner !== 'TIE' && r[2 + i] === res.winner) correct++;
+      });
+      const tbGuess = Number(r[2 + GAMES.length]);
+      const diff = (tiebreakerResult && tiebreakerResult.decided && tiebreakerResult.actualTotal != null && !isNaN(tbGuess))
+        ? Math.abs(tbGuess - tiebreakerResult.actualTotal) : null;
+      return { name: (r[1] || '').trim(), correct, diff };
+    });
+
+    standings.sort((a, b) => {
+      if (b.correct !== a.correct) return b.correct - a.correct;
+      if (a.diff == null && b.diff == null) return 0;
+      if (a.diff == null) return 1;
+      if (b.diff == null) return -1;
+      return a.diff - b.diff;
+    });
+
+    if (!standings.length) {
+      contentEl.innerHTML = '<p class="muted">No picks submitted yet for Week ' + CURRENT_WEEK + '.</p>';
+    } else {
+      const body = standings.map((s, idx) => `
+        <tr>
+          <td class="rank-cell">${idx + 1}</td>
+          <td class="name-cell">${esc(s.name)}</td>
+          <td class="num">${s.correct}/${decidedCount}</td>
+          <td class="num">${s.diff == null ? '—' : esc(s.diff)}</td>
+        </tr>`).join('');
+      contentEl.innerHTML = `<table>
+        <thead><tr><th>Rank</th><th>Name</th><th class="num">Correct</th><th class="num">TB Diff</th></tr></thead>
+        <tbody>${body}</tbody>
+      </table>`;
+    }
+    tagEl.textContent = decidedCount + '/' + GAMES.length + ' games final';
+  } catch (err) {
+    tagEl.textContent = 'Unavailable';
+    contentEl.innerHTML = `<p class="muted">Couldn't load live standings right now. Try reloading the page.</p>`;
+  }
+}
+
 function renderPicksTab() {
   const el = document.getElementById('tab-picks');
 
@@ -758,6 +866,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 renderLeaderboard();
 renderPicksTab();
 loadLivePicks();
+loadLiveGrades();
 </script>
 </body>
 </html>
