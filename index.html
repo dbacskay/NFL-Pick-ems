@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
 <title>Pick'em Leaderboard Snapshot</title>
 <style>
   :root {
@@ -155,8 +162,17 @@
     padding: 14px 16px; font-size: 13px; white-space: pre-wrap;
   }
   .footer-note { text-align: center; color: var(--footer-text); font-size: 12px; margin-top: 8px; }
-  .grid-scroll { overflow-x: auto; }
+  .grid-scroll { overflow-x: auto; position: relative; }
   .grid-scroll table { min-width: 720px; }
+  .grid-scroll th:first-child, .grid-scroll td:first-child {
+    position: sticky; left: 0; background: var(--card-bg); z-index: 1;
+  }
+  .grid-scroll .actual-row td:first-child { background: var(--actual-bg); }
+  .scroll-hint { display: none; font-size: 12px; color: var(--text-muted); margin: -4px 0 10px 0; }
+  @media (max-width: 640px) {
+    .scroll-hint { display: block; }
+  }
+  .lock-msg { padding: 6px 0; }
   .pick-cell.correct { color: var(--correct); font-weight: 700; }
   .pick-cell.wrong { color: var(--wrong); }
   .pick-cell.actual { font-weight: 700; }
@@ -425,6 +441,7 @@ function renderPicksGrid(picksInfo) {
         <h2 style="margin:0;">Everyone's Picks — Week ${week}</h2>
         <span class="tag">Green = correct</span>
       </div>
+      <div class="scroll-hint">← swipe to see all games →</div>
       <div class="grid-scroll">
         <table>
           <thead><tr><th>Name</th>${headerCells}</tr></thead>
@@ -471,6 +488,12 @@ function renderLeaderboard() {
 // need to change. Editing the same Google Form's question text/options (rather
 // than recreating questions) keeps these IDs valid.
 const CURRENT_WEEK = 3;
+// Picks close once the first game of the week kicks off — update this every week to
+// match Game 1's kickoff time (in UTC). Thu 9/24/2026 8:15 PM ET (EDT, UTC-4) = below.
+const PICKS_LOCK_AT = "2026-09-25T00:15:00Z";
+function isPicksLocked() {
+  return Date.now() >= new Date(PICKS_LOCK_AT).getTime();
+}
 const FORM_ACTION_URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdl-sUg_Fui1-Al5hmoLHGvbmcTZiLcjs8fY9eb26-lvIULFQ/formResponse";
 const NAME_ENTRY = "entry.85148305";
 const TIEBREAKER_ENTRY = "entry.533836565";
@@ -561,6 +584,7 @@ function renderLivePicksTable(rows) {
   }).join('');
 
   return `
+    <div class="scroll-hint">← swipe to see all games →</div>
     <div class="grid-scroll">
       <table>
         <thead><tr><th>Name</th>${headerCells}<th>TB Guess</th></tr></thead>
@@ -593,6 +617,16 @@ async function loadLivePicks() {
 
 function renderPicksTab() {
   const el = document.getElementById('tab-picks');
+
+  if (isPicksLocked()) {
+    el.innerHTML = `
+      <div class="card">
+        <div class="week-header"><h2 style="margin:0;">Week ${CURRENT_WEEK} Picks</h2></div>
+        <p class="muted lock-msg">Picks for Week ${CURRENT_WEEK} are locked — the first game has already kicked off. Check back next week!</p>
+      </div>`;
+    return;
+  }
+
   const gameBlocks = GAMES.map((g, idx) => `
     <div class="game-block">
       <div class="game-title">${esc(g.matchup)}${g.tiebreaker ? '<span class="tb-badge">Tiebreaker Game</span>' : ''}</div>
@@ -635,6 +669,15 @@ function renderPicksTab() {
 function submitPicks() {
   const btn = document.getElementById('submitBtn');
   const msg = document.getElementById('submitMsg');
+
+  if (isPicksLocked()) {
+    msg.className = 'submit-msg err';
+    msg.textContent = `Picks for Week ${CURRENT_WEEK} just locked — the first game has kicked off.`;
+    btn.disabled = true;
+    btn.textContent = 'Locked';
+    return;
+  }
+
   const name = document.getElementById('yourName').value.trim();
 
   if (!name) { msg.className = 'submit-msg err'; msg.textContent = 'Please enter your name.'; return; }
@@ -716,3 +759,5 @@ renderLeaderboard();
 renderPicksTab();
 loadLivePicks();
 </script>
+</body>
+</html>
