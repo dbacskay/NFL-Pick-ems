@@ -228,6 +228,7 @@
   </div>
 
   <div class="tab-panel active" id="tab-leaderboard">
+    <div id="live-picks"></div>
     <div id="content"></div>
     <div class="footer-note" id="footer-note"></div>
   </div>
@@ -459,7 +460,7 @@ function renderLeaderboard() {
       ${renderPicksGrid(picksInfo)}
     `;
     document.getElementById('footer-note').textContent =
-      'Snapshot from ' + new Date(SNAPSHOT_TAKEN_AT).toLocaleString() + ' — ask Devon to refresh this page for the latest results.';
+      'Standings/results snapshot from ' + new Date(SNAPSHOT_TAKEN_AT).toLocaleString() + ' — ask Devon to refresh for updated results. (Picks above are live.)';
   } catch (err) {
     el.innerHTML = `<div class="error">Couldn't render the leaderboard snapshot.\n\n${esc(err.message || err)}</div>`;
   }
@@ -491,6 +492,102 @@ const GAMES = [
   { matchup: "Los Angeles Rams @ Denver Broncos", kickoff: "Sun 9/27 8:20 PM ET (NBC)", away: "Los Angeles Rams", home: "Denver Broncos", entry: "entry.511724375" },
   { matchup: "Philadelphia Eagles @ Chicago Bears", kickoff: "Mon 9/28 8:15 PM ET (ESPN)", away: "Philadelphia Eagles", home: "Chicago Bears", entry: "entry.486322034", tiebreaker: true }
 ];
+
+// ---------- Live "Week N Picks" — reads straight from the Form's response sheet ----------
+// Published-to-web CSV of the Form's linked response sheet. This is live: whenever
+// someone submits the form, this URL reflects it within moments. No republish needed.
+// If a new Google Form is ever created for a future week, update this URL to match
+// (Form editor -> Responses -> View in Sheets -> File -> Share -> Publish to web ->
+// select the "Form Responses" sheet -> format "Comma-separated values (.csv)" -> Publish).
+const PICKS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQa2zV86VpzHY-Bmr1Sk610u1JXbfKT2lgKB9hBJU6DvyuXLWoYtANt-42Knc26Zp8iVDlqB_VgzHJw/pub?gid=1977380086&single=true&output=csv";
+
+function parseCSV(text) {
+  const rows = [];
+  let row = [], field = '', inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQuotes) {
+      if (c === '"') {
+        if (text[i + 1] === '"') { field += '"'; i++; }
+        else { inQuotes = false; }
+      } else field += c;
+    } else {
+      if (c === '"') inQuotes = true;
+      else if (c === ',') { row.push(field); field = ''; }
+      else if (c === '\r') { /* skip */ }
+      else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+      else field += c;
+    }
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  return rows.filter(r => !(r.length === 1 && r[0] === ''));
+}
+
+function renderLivePicksShell() {
+  const el = document.getElementById('live-picks');
+  if (!el) return;
+  el.innerHTML = `
+    <div class="card">
+      <div class="week-header">
+        <h2 style="margin:0;">Week ${CURRENT_WEEK} Picks — Live</h2>
+        <span class="tag" id="live-picks-tag">Loading…</span>
+      </div>
+      <div id="live-picks-content"><p class="muted">Loading…</p></div>
+    </div>`;
+}
+
+function renderLivePicksTable(rows) {
+  if (!rows || rows.length < 2) {
+    return '<p class="muted">No picks submitted yet for Week ' + CURRENT_WEEK + '.</p>';
+  }
+  const dataRows = rows.slice(1);
+  // Keep only the most recent submission per name (rows are in submission order,
+  // so the last row for a given name wins).
+  const byName = new Map();
+  dataRows.forEach(r => {
+    const name = (r[1] || '').trim();
+    if (name) byName.set(name, r);
+  });
+  const finalRows = Array.from(byName.values());
+  if (!finalRows.length) {
+    return '<p class="muted">No picks submitted yet for Week ' + CURRENT_WEEK + '.</p>';
+  }
+
+  const headerCells = GAMES.map(g => `<th>${esc(g.matchup)}</th>`).join('');
+  const bodyRows = finalRows.map(r => {
+    const cells = GAMES.map((g, i) => `<td class="pick-cell">${esc(r[2 + i] || '')}</td>`).join('');
+    const tb = r[2 + GAMES.length] || '';
+    return `<tr><td class="name-cell">${esc(r[1])}</td>${cells}<td class="num">${esc(tb)}</td></tr>`;
+  }).join('');
+
+  return `
+    <div class="grid-scroll">
+      <table>
+        <thead><tr><th>Name</th>${headerCells}<th>TB Guess</th></tr></thead>
+        <tbody>${bodyRows}</tbody>
+      </table>
+    </div>`;
+}
+
+async function loadLivePicks() {
+  renderLivePicksShell();
+  const contentEl = document.getElementById('live-picks-content');
+  const tagEl = document.getElementById('live-picks-tag');
+  try {
+    const res = await fetch(PICKS_CSV_URL + '&nocache=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const text = await res.text();
+    const rows = parseCSV(text);
+    contentEl.innerHTML = renderLivePicksTable(rows);
+    const count = Math.max(0, rows.length - 1);
+    tagEl.textContent = count === 0 ? 'No picks yet' : (count + (count === 1 ? ' pick set in' : ' picks in'));
+  } catch (err) {
+    // Claude's own artifact sandbox blocks this kind of outbound fetch, so this view
+    // only works on the public GitHub Pages copy. Point there instead of erroring.
+    tagEl.textContent = 'Unavailable here';
+    contentEl.innerHTML = `<p class="muted">Live picks aren't available in this preview. See them on the public page: <a href="https://dbacskay.github.io/NFL-Pick-ems/" target="_blank" rel="noopener" style="color:var(--accent);">dbacskay.github.io/NFL-Pick-ems</a></p>`;
+  }
+}
 
 function renderPicksTab() {
   const el = document.getElementById('tab-picks');
@@ -615,4 +712,5 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 
 renderLeaderboard();
 renderPicksTab();
+loadLivePicks();
 </script>
