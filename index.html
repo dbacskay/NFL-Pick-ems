@@ -1,63 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Pick'em Leaderboard Snapshot</title>
 <style>
-  :root {
-    --bg: #f4f5f7;
-    --card-bg: #ffffff;
-    --text: #1a1a2e;
-    --text-muted: #666666;
-    --border: #e2e2e6;
-    --row-border: #f0f0f0;
-    --accent: #4338ca;
-    --accent-bg: #eef2ff;
-    --gold: #c9971e;
-    --silver: #8a8f98;
-    --bronze: #b5651d;
-    --win-bg: #fff8e1;
-    --pill-bg: #fff3cd;
-    --pill-text: #8a6d00;
-    --correct: #16a34a;
-    --wrong: #b91c1c;
-    --error-bg: #fef2f2;
-    --error-text: #991b1b;
-    --ok-text: #166534;
-    --actual-bg: #f8f9fb;
-    --footer-text: #aaaaaa;
-    --btn-disabled-bg: #c7c7d1;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #14151d;
-      --card-bg: #1d1f2b;
-      --text: #e8e8f0;
-      --text-muted: #9a9aa8;
-      --border: #2c2e3c;
-      --row-border: #2a2c38;
-      --accent: #9797f7;
-      --accent-bg: #262a4a;
-      --gold: #e0b84a;
-      --silver: #a8adb8;
-      --bronze: #d18a4a;
-      --win-bg: #3a3320;
-      --pill-bg: #4a3f1a;
-      --pill-text: #ffd75e;
-      --correct: #4ade80;
-      --wrong: #f87171;
-      --error-bg: #3a1e1e;
-      --error-text: #ff9d9d;
-      --ok-text: #4ade80;
-      --actual-bg: #242633;
-      --footer-text: #6a6c78;
-      --btn-disabled-bg: #3d3f4d;
-    }
-  }
-  :root[data-theme="dark"] {
+:root {
+  --bg: #f4f5f7;
+  --card-bg: #ffffff;
+  --text: #1a1a2e;
+  --text-muted: #666666;
+  --border: #e2e2e6;
+  --row-border: #f0f0f0;
+  --accent: #4338ca;
+  --accent-bg: #eef2ff;
+  --gold: #c9971e;
+  --silver: #8a8f98;
+  --bronze: #b5651d;
+  --win-bg: #fff8e1;
+  --pill-bg: #fff3cd;
+  --pill-text: #8a6d00;
+  --correct: #16a34a;
+  --wrong: #b91c1c;
+  --error-bg: #fef2f2;
+  --error-text: #991b1b;
+  --ok-text: #166534;
+  --actual-bg: #f8f9fb;
+  --footer-text: #aaaaaa;
+  --btn-disabled-bg: #c7c7d1;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
     --bg: #14151d;
     --card-bg: #1d1f2b;
     --text: #e8e8f0;
@@ -81,158 +50,183 @@
     --footer-text: #6a6c78;
     --btn-disabled-bg: #3d3f4d;
   }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    padding: 24px 16px;
-    padding-block: 24px;
-  }
-  .wrap { max-width: 820px; margin: 0 auto; }
-  h1 {
-    font-size: 24px;
-    margin: 0 0 4px 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; }
-  .tabs {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 18px;
-    border-bottom: 1px solid var(--border);
-  }
-  .tab-btn {
-    border: none;
-    background: none;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-muted);
-    padding: 10px 4px;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    margin-right: 18px;
-    font-family: inherit;
-  }
-  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
-  .card {
-    background: var(--card-bg);
-    border-radius: 14px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  .card h2 { font-size: 16px; margin: 0 0 14px 0; color: var(--text); }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  th, td { text-align: left; padding: 9px 8px; }
-  th { color: var(--text-muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.03em; border-bottom: 1px solid var(--border); }
-  tbody tr { border-bottom: 1px solid var(--row-border); }
-  tbody tr:last-child { border-bottom: none; }
-  tbody tr.winner-row { background: linear-gradient(90deg, var(--win-bg), transparent); }
-  .rank-cell { font-weight: 700; width: 34px; }
-  .rank-1 { color: var(--gold); }
-  .rank-2 { color: var(--silver); }
-  .rank-3 { color: var(--bronze); }
-  .name-cell { font-weight: 600; white-space: nowrap; }
-  .medal { margin-right: 4px; }
-  .pill {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 20px;
-    background: var(--pill-bg);
-    color: var(--pill-text);
-    margin-left: 6px;
-  }
-  .num { text-align: right; font-variant-numeric: tabular-nums; }
-  .muted { color: var(--text-muted); }
-  .week-header { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
-  .week-header .tag {
-    font-size: 12px; background: var(--accent-bg); color: var(--accent);
-    padding: 3px 10px; border-radius: 20px; font-weight: 600;
-  }
-  .error {
-    background: var(--error-bg); color: var(--error-text); border-radius: 10px;
-    padding: 14px 16px; font-size: 13px; white-space: pre-wrap;
-  }
-  .footer-note { text-align: center; color: var(--footer-text); font-size: 12px; margin-top: 8px; }
-  .grid-scroll { overflow-x: auto; position: relative; }
-  .grid-scroll table { min-width: 720px; }
-  .grid-scroll th:first-child, .grid-scroll td:first-child {
-    position: sticky; left: 0; background: var(--card-bg); z-index: 1;
-  }
-  .grid-scroll .actual-row td:first-child { background: var(--actual-bg); }
-  .scroll-hint { display: none; font-size: 12px; color: var(--text-muted); margin: -4px 0 10px 0; }
-  @media (max-width: 640px) {
-    .scroll-hint { display: block; }
-  }
-  .lock-msg { padding: 6px 0; }
-  .pick-cell.correct { color: var(--correct); font-weight: 700; }
-  .pick-cell.wrong { color: var(--wrong); }
-  .pick-cell.actual { font-weight: 700; }
-  .actual-row td { background: var(--actual-bg); font-weight: 700; }
-  .game-block { border-bottom: 1px solid var(--row-border); padding: 14px 0; }
-  .game-block:last-child { border-bottom: none; }
-  .game-title { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
-  .game-time { color: var(--text-muted); font-size: 12px; margin-bottom: 10px; }
-  .tb-badge {
-    font-size: 11px; font-weight: 700; background: var(--accent-bg); color: var(--accent);
-    padding: 2px 8px; border-radius: 20px; margin-left: 6px;
-  }
-  .choice-row { display: flex; gap: 10px; flex-wrap: wrap; }
-  .choice-label {
-    flex: 1;
-    min-width: 120px;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    padding: 10px 12px;
-    text-align: center;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    user-select: none;
-    color: var(--text);
-  }
-  .choice-label input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-  .choice-label.selected { border-color: var(--accent); background: var(--accent-bg); color: var(--accent); }
-  input[type="text"], input[type="number"] {
-    width: 100%;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    padding: 10px 12px;
-    font-size: 14px;
-    font-family: inherit;
-    background: var(--card-bg);
-    color: var(--text);
-  }
-  label.field-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
-  .field-block { margin-bottom: 16px; }
-  .cta-btn {
-    display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    font-weight: 700;
-    font-size: 14px;
-    padding: 12px 22px;
-    border-radius: 10px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-  }
-  .cta-btn:disabled { background: var(--btn-disabled-bg); cursor: default; }
-  .cta-btn:focus-visible, .tab-btn:focus-visible, .choice-label:focus-within {
-    outline: 2px solid var(--accent); outline-offset: 2px;
-  }
-  .submit-msg { margin-top: 14px; font-size: 13px; }
-  .submit-msg.ok { color: var(--ok-text); }
-  .submit-msg.err { color: var(--error-text); }
+}
+:root[data-theme="dark"] {
+  --bg: #14151d;
+  --card-bg: #1d1f2b;
+  --text: #e8e8f0;
+  --text-muted: #9a9aa8;
+  --border: #2c2e3c;
+  --row-border: #2a2c38;
+  --accent: #9797f7;
+  --accent-bg: #262a4a;
+  --gold: #e0b84a;
+  --silver: #a8adb8;
+  --bronze: #d18a4a;
+  --win-bg: #3a3320;
+  --pill-bg: #4a3f1a;
+  --pill-text: #ffd75e;
+  --correct: #4ade80;
+  --wrong: #f87171;
+  --error-bg: #3a1e1e;
+  --error-text: #ff9d9d;
+  --ok-text: #4ade80;
+  --actual-bg: #242633;
+  --footer-text: #6a6c78;
+  --btn-disabled-bg: #3d3f4d;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 24px 16px;
+  padding-block: 24px;
+}
+.wrap { max-width: 820px; margin: 0 auto; }
+h1 {
+  font-size: 24px;
+  margin: 0 0 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; }
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+.tab-btn {
+  border: none;
+  background: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 10px 4px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-right: 18px;
+  font-family: inherit;
+}
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.card {
+  background: var(--card-bg);
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.card h2 { font-size: 16px; margin: 0 0 14px 0; color: var(--text); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 9px 8px; }
+th { color: var(--text-muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.03em; border-bottom: 1px solid var(--border); }
+tbody tr { border-bottom: 1px solid var(--row-border); }
+tbody tr:last-child { border-bottom: none; }
+tbody tr.winner-row { background: linear-gradient(90deg, var(--win-bg), transparent); }
+.rank-cell { font-weight: 700; width: 34px; }
+.rank-1 { color: var(--gold); }
+.rank-2 { color: var(--silver); }
+.rank-3 { color: var(--bronze); }
+.name-cell { font-weight: 600; white-space: nowrap; }
+.medal { margin-right: 4px; }
+.pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  margin-left: 6px;
+}
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+.muted { color: var(--text-muted); }
+.week-header { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.week-header .tag {
+  font-size: 12px; background: var(--accent-bg); color: var(--accent);
+  padding: 3px 10px; border-radius: 20px; font-weight: 600;
+}
+.error {
+  background: var(--error-bg); color: var(--error-text); border-radius: 10px;
+  padding: 14px 16px; font-size: 13px; white-space: pre-wrap;
+}
+.footer-note { text-align: center; color: var(--footer-text); font-size: 12px; margin-top: 8px; }
+.grid-scroll { overflow-x: auto; position: relative; }
+.grid-scroll table { min-width: 720px; }
+.grid-scroll th:first-child, .grid-scroll td:first-child {
+  position: sticky; left: 0; background: var(--card-bg); z-index: 1;
+}
+.grid-scroll .actual-row td:first-child { background: var(--actual-bg); }
+.scroll-hint { display: none; font-size: 12px; color: var(--text-muted); margin: -4px 0 10px 0; }
+@media (max-width: 640px) {
+  .scroll-hint { display: block; }
+}
+.lock-msg { padding: 6px 0; }
+.pick-cell.correct { color: var(--correct); font-weight: 700; }
+.pick-cell.wrong { color: var(--wrong); }
+.pick-cell.actual { font-weight: 700; }
+.actual-row td { background: var(--actual-bg); font-weight: 700; }
+.game-block { border-bottom: 1px solid var(--row-border); padding: 14px 0; }
+.game-block:last-child { border-bottom: none; }
+.game-title { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
+.game-time { color: var(--text-muted); font-size: 12px; margin-bottom: 10px; }
+.tb-badge {
+  font-size: 11px; font-weight: 700; background: var(--accent-bg); color: var(--accent);
+  padding: 2px 8px; border-radius: 20px; margin-left: 6px;
+}
+.choice-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.choice-label {
+  flex: 1;
+  min-width: 120px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  color: var(--text);
+}
+.choice-label input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.choice-label.selected { border-color: var(--accent); background: var(--accent-bg); color: var(--accent); }
+input[type="text"], input[type="number"] {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  background: var(--card-bg);
+  color: var(--text);
+}
+label.field-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.field-block { margin-bottom: 16px; }
+.cta-btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.cta-btn:disabled { background: var(--btn-disabled-bg); cursor: default; }
+.cta-btn:focus-visible, .tab-btn:focus-visible, .choice-label:focus-within {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+.submit-msg { margin-top: 14px; font-size: 13px; }
+.submit-msg.ok { color: var(--ok-text); }
+.submit-msg.err { color: var(--error-text); }
 </style>
 <div class="wrap">
   <h1>🏈 NFL Pick'em — Friends &amp; Family</h1>
@@ -255,52 +249,77 @@
 
 <script>
 // ---------- Static leaderboard snapshot — republish this page to refresh ----------
-const SNAPSHOT_TAKEN_AT = "2026-09-21T23:45:00Z";
+const SNAPSHOT_TAKEN_AT = "2026-09-29T07:03:28Z";
+
 const TRACKER_TEXT = `
-|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| | | | | | | | | | | | | | | | | | |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Weekly Results |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| Week | Name | Correct | Total Games | Tiebreaker Guess | Actual Total | Diff | Rank | Won |  |  |  |  |  |  |  |  |  |
-| 1 | James Keller | 10 | 16 | 43 | 41 | 2 | 1 | Y |  |  |  |  |  |  |  |  |  |
-| 1 | michael owens | 10 | 16 | 49 | 41 | 8 | 2 | N |  |  |  |  |  |  |  |  |  |
-| 1 | Boomer | 10 | 16 | 65 | 41 | 24 | 3 | N |  |  |  |  |  |  |  |  |  |
-| 1 | Devon Bacskay | 9 | 16 | 45 | 41 | 4 | 4 | N |  |  |  |  |  |  |  |  |  |
-| 1 | Jon Bacskay | 8 | 16 | 42 | 41 | 1 | 5 | N |  |  |  |  |  |  |  |  |  |
-| 2 | Quick | 12 | 16 | 47 | 34 | 13 | 1 | Y |  |  |  |  |  |  |  |  |  |
-| 2 | Jake Nobriga | 12 | 16 | 47 | 34 | 13 | 1 | Y |  |  |  |  |  |  |  |  |  |
-| 2 | Boomer | 12 | 16 | 48 | 34 | 14 | 3 | N |  |  |  |  |  |  |  |  |  |
-| 2 | James Keller | 12 | 16 | 62 | 34 | 28 | 4 | N |  |  |  |  |  |  |  |  |  |
-| 2 | KrisZ | 11 | 16 | 36 | 34 | 2 | 5 | N |  |  |  |  |  |  |  |  |  |
-| 2 | michael owens | 11 | 16 | 49 | 34 | 15 | 6 | N |  |  |  |  |  |  |  |  |  |
-| 2 | Dale | 11 | 16 | 60 | 34 | 26 | 7 | N |  |  |  |  |  |  |  |  |  |
-| 2 | Devon Bacskay | 10 | 16 | 40 | 34 | 6 | 8 | N |  |  |  |  |  |  |  |  |  |
-| 2 | Rob | 10 | 16 | 53 | 34 | 19 | 9 | N |  |  |  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| Season Standings |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| Season Rank | Name | Total Correct | Total Games Graded | Weeks Won | Avg Tiebreaker Diff |  |  |  |  |  |  |  |  |  |  |  |  |
-| 1 | James Keller | 22 | 32 | 1 | 15 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 1 | Boomer | 22 | 32 | 0 | 19 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 3 | michael owens | 21 | 32 | 0 | 11.5 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 4 | Devon Bacskay | 19 | 32 | 0 | 5 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 5 | Jake Nobriga | 12 | 16 | 1 | 13 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 5 | Quick | 12 | 16 | 1 | 13 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 7 | KrisZ | 11 | 16 | 0 | 2 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 7 | Dale | 11 | 16 | 0 | 26 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 9 | Rob | 10 | 16 | 0 | 19 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 10 | Jon Bacskay | 8 | 16 | 0 | 1 |  |  |  |  |  |  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| Week 2 Picks |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| Name | DET@BUF | CAR@ATL | NO@BAL | MIN@CHI | CIN@HOU | PIT@NE | GB@NYJ | CLE@TB | PHI@TEN | JAX@DEN | LV@LAC | SEA@ARI | WAS@DAL | MIA@SF | IND@KC | NYG@LAR | TB Guess |
-| ACTUAL RESULT | Buffalo Bills | Carolina Panthers | Baltimore Ravens | Minnesota Vikings | Cincinnati Bengals | New England Patriots | Green Bay Packers | Cleveland Browns | Philadelphia Eagles | Denver Broncos | Las Vegas Raiders | Seattle Seahawks | Dallas Cowboys | San Francisco 49ers | Kansas City Chiefs | Los Angeles Rams | 34 |
-| Devon Bacskay | Buffalo Bills | Atlanta Falcons | Baltimore Ravens | Chicago Bears | Houston Texans | New England Patriots | Green Bay Packers | Tampa Bay Buccaneers | Philadelphia Eagles | Jacksonville Jaguars | Las Vegas Raiders | Seattle Seahawks | Washington Commanders | San Francisco 49ers | Kansas City Chiefs | Los Angeles Rams | 40 |
-| Boomer | Buffalo Bills | Carolina Panthers | Baltimore Ravens | Chicago Bears | Houston Texans | New England Patriots | Green Bay Packers | Tampa Bay Buccaneers | Philadelphia Eagles | Jacksonville Jaguars | Las Vegas Raiders | Seattle Seahawks | Dallas Cowboys | San Francisco 49ers | Kansas City Chiefs | Los Angeles Rams | 48 |
-| michael owens | Buffalo Bills | Carolina Panthers | Baltimore Ravens | Chicago Bears | Houston Texans | New England Patriots | Green Bay Packers | Tampa Bay Buccaneers | Philadelphia Eagles | Denver Broncos | Los Angeles Chargers | Arizona Cardinals | Dallas Cowboys | San Francisco 49ers | Kansas City Chiefs | Los Angeles Rams | 49 |
-| James Keller | Detroit Lions | Carolina Panthers | Baltimore Ravens | Chicago Bears | Cincinnati Bengals | New England Patriots | Green Bay Packers | Tampa Bay Buccaneers | Philadelphia Eagles | Denver Broncos | Los Angeles Chargers | Seattle Seahawks | Dallas Cowboys | San Francisco 49ers | Kansas City Chiefs | Los Angeles Rams | 62 |
-| Dale | Buffalo Bills | Carolina Panthers | Baltimore Ravens | Chicago Bears | Houston Texans | Pittsburgh Steelers | Green Bay Packers | Tampa Bay Buccaneers | Philadelphia Eagles | Denver Broncos | Las Vegas Raiders | Seattle Seahawks | Dallas Cowboys | San Francisco 49ers | Kansas City Chiefs | New York Giants | 60 |
-| Quick | Buffalo Bills | Carolina Panthers | Baltimore Ravens | Chicago Bears | Cincinnati Bengals | New England Patriots | Green Bay Packers | Tampa Bay Buccaneers | Philadelphia Eagles | Jacksonville Jaguars | Los Angeles Chargers | Seattle Seahawks | Dallas Cowboys | San Francisco 49ers | Kansas City Chiefs | Los Angeles Rams | 47 |
-| KrisZ | Detroit Lions | Atlanta Falcons | Baltimore Ravens | Minnesota Vikings | Cincinnati Bengals | Pittsburgh Steelers | Green Bay Packers | Tampa Bay Buccaneers | Philadelphia Eagles | Denver Broncos | Los Angeles Chargers | Seattle Seahawks | Dallas Cowboys | San Francisco 49ers | Kansas City Chiefs | Los Angeles Rams | 36 |
-| Rob | Buffalo Bills | Carolina Panthers | Baltimore Ravens | Chicago Bears | Cincinnati Bengals | Pittsburgh Steelers | Green Bay Packers | Tampa Bay Buccaneers | Philadelphia Eagles | Jacksonville Jaguars | Los Angeles Chargers | Seattle Seahawks | Washington Commanders | San Francisco 49ers | Kansas City Chiefs | Los Angeles Rams | 53 |
-| Jake Nobriga | Buffalo Bills | Carolina Panthers | Baltimore Ravens | Chicago Bears | Houston Texans | New England Patriots | Green Bay Packers | Tampa Bay Buccaneers | Philadelphia Eagles | Denver Broncos | Los Angeles Chargers | Seattle Seahawks | Dallas Cowboys | San Francisco 49ers | Kansas City Chiefs | Los Angeles Rams | 47 |
+| Weekly Results | | | | | | | | | | | | | | | | | |
+| Week | Name | Correct | Total Games | Tiebreaker Guess | Actual Total | Diff | Rank | Won | | | | | | | | | |
+| 1 | James Keller | 10 | 16 | 43 | 41 | 2 | 1 | Y | | | | | | | | | |
+| 1 | michael owens | 10 | 16 | 49 | 41 | 8 | 2 | N | | | | | | | | | |
+| 1 | Boomer | 10 | 16 | 65 | 41 | 24 | 3 | N | | | | | | | | | |
+| 1 | Devon Bacskay | 9 | 16 | 45 | 41 | 4 | 4 | N | | | | | | | | | |
+| 1 | Jon Bacskay | 8 | 16 | 42 | 41 | 1 | 5 | N | | | | | | | | | |
+| 2 | Quick | 12 | 16 | 47 | 34 | 13 | 1 | Y | | | | | | | | | |
+| 2 | Jake Nobriga | 12 | 16 | 47 | 34 | 13 | 1 | Y | | | | | | | | | |
+| 2 | Boomer | 12 | 16 | 48 | 34 | 14 | 3 | N | | | | | | | | | |
+| 2 | James Keller | 12 | 16 | 62 | 34 | 28 | 4 | N | | | | | | | | | |
+| 2 | KrisZ | 11 | 16 | 36 | 34 | 2 | 5 | N | | | | | | | | | |
+| 2 | michael owens | 11 | 16 | 49 | 34 | 15 | 6 | N | | | | | | | | | |
+| 2 | Dale | 11 | 16 | 60 | 34 | 26 | 7 | N | | | | | | | | | |
+| 2 | Devon Bacskay | 10 | 16 | 40 | 34 | 6 | 8 | N | | | | | | | | | |
+| 2 | Rob | 10 | 16 | 53 | 34 | 19 | 9 | N | | | | | | | | | |
+| 3 | Cheyenne k | 11 | 16 | 35 | 34 | 1 | 1 | Y | | | | | | | | | |
+| 3 | KrisZ | 11 | 16 | 32 | 34 | 2 | 2 | N | | | | | | | | | |
+| 3 | Justin | 10 | 16 | 42 | 34 | 8 | 3 | N | | | | | | | | | |
+| 3 | michael owens | 9 | 16 | 40 | 34 | 6 | 4 | N | | | | | | | | | |
+| 3 | James Keller | 9 | 16 | 57 | 34 | 23 | 5 | N | | | | | | | | | |
+| 3 | Devon Bacskay | 8 | 16 | 37 | 34 | 3 | 6 | N | | | | | | | | | |
+| 3 | Jake Nobriga | 8 | 16 | 38 | 34 | 4 | 7 | N | | | | | | | | | |
+| 3 | Boomer | 8 | 16 | 41 | 34 | 7 | 8 | N | | | | | | | | | |
+| 3 | Matt craven | 8 | 16 | 47 | 34 | 13 | 9 | N | | | | | | | | | |
+| 3 | Rob | 8 | 16 | 53 | 34 | 19 | 10 | N | | | | | | | | | |
+| 3 | Quick | 7 | 16 | 31 | 34 | 3 | 11 | N | | | | | | | | | |
+| 3 | Zach Bacskay | 7 | 16 | 41 | 34 | 7 | 12 | N | | | | | | | | | |
+| 3 | Dale | 7 | 16 | 47 | 34 | 13 | 13 | N | | | | | | | | | |
+| 3 | michael austin | 6 | 16 | 34 | 34 | 0 | 14 | N | | | | | | | | | |
+| | | | | | | | | | | | | | | | | | |
+| Season Standings | | | | | | | | | | | | | | | | | |
+| Season Rank | Name | Total Correct | Total Games Graded | Weeks Won | Avg Tiebreaker Diff | | | | | | | | | | | | |
+| 1 | James Keller | 31 | 48 | 1 | 17.7 | | | | | | | | | | | | |
+| 2 | Boomer | 30 | 48 | 0 | 15 | | | | | | | | | | | | |
+| 2 | michael owens | 30 | 48 | 0 | 9.7 | | | | | | | | | | | | |
+| 4 | Devon Bacskay | 27 | 48 | 0 | 4.3 | | | | | | | | | | | | |
+| 5 | KrisZ | 22 | 32 | 0 | 2 | | | | | | | | | | | | |
+| 6 | Jake Nobriga | 20 | 32 | 1 | 8.5 | | | | | | | | | | | | |
+| 7 | Quick | 19 | 32 | 1 | 8 | | | | | | | | | | | | |
+| 8 | Dale | 18 | 32 | 0 | 19.5 | | | | | | | | | | | | |
+| 8 | Rob | 18 | 32 | 0 | 19 | | | | | | | | | | | | |
+| 10 | Cheyenne k | 11 | 16 | 1 | 1 | | | | | | | | | | | | |
+| 11 | Justin | 10 | 16 | 0 | 8 | | | | | | | | | | | | |
+| 12 | Jon Bacskay | 8 | 16 | 0 | 1 | | | | | | | | | | | | |
+| 12 | Matt craven | 8 | 16 | 0 | 13 | | | | | | | | | | | | |
+| 14 | Zach Bacskay | 7 | 16 | 0 | 7 | | | | | | | | | | | | |
+| 15 | michael austin | 6 | 16 | 0 | 0 | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | | |
+| Week 3 Picks | | | | | | | | | | | | | | | | | |
+| Name | ATL@GB | LAC@BUF | CAR@CLE | NYJ@DET | HOU@IND | NE@JAX | KC@MIA | TEN@NYG | CIN@PIT | SEA@WAS | ARI@SF | MIN@TB | LV@NO | BAL@DAL | LAR@DEN | PHI@CHI | TB Guess |
+| ACTUAL RESULT | Atlanta Falcons | Buffalo Bills | Cleveland Browns | Detroit Lions | Indianapolis Colts | Jacksonville Jaguars | Kansas City Chiefs | New York Giants | Pittsburgh Steelers | Washington Commanders | San Francisco 49ers | Minnesota Vikings | Las Vegas Raiders | Baltimore Ravens | Denver Broncos | Chicago Bears | 34 |
+| Devon Bacskay | Green Bay Packers | Buffalo Bills | Carolina Panthers | Detroit Lions | Houston Texans | Jacksonville Jaguars | Kansas City Chiefs | New York Giants | Cincinnati Bengals | Seattle Seahawks | San Francisco 49ers | Minnesota Vikings | New Orleans Saints | Baltimore Ravens | Los Angeles Rams | Philadelphia Eagles | 37 |
+| Dale | Green Bay Packers | Buffalo Bills | Carolina Panthers | Detroit Lions | Houston Texans | Jacksonville Jaguars | Kansas City Chiefs | New York Giants | Cincinnati Bengals | Seattle Seahawks | San Francisco 49ers | Minnesota Vikings | New Orleans Saints | Dallas Cowboys | Los Angeles Rams | Philadelphia Eagles | 47 |
+| michael owens | Green Bay Packers | Buffalo Bills | Carolina Panthers | Detroit Lions | Indianapolis Colts | Jacksonville Jaguars | Kansas City Chiefs | Tennessee Titans | Cincinnati Bengals | Seattle Seahawks | San Francisco 49ers | Minnesota Vikings | New Orleans Saints | Baltimore Ravens | Denver Broncos | Philadelphia Eagles | 40 |
+| michael austin | Green Bay Packers | Buffalo Bills | Carolina Panthers | Detroit Lions | Houston Texans | Jacksonville Jaguars | Kansas City Chiefs | Tennessee Titans | Cincinnati Bengals | Seattle Seahawks | San Francisco 49ers | Tampa Bay Buccaneers | New Orleans Saints | Baltimore Ravens | Los Angeles Rams | Philadelphia Eagles | 34 |
+| Justin | Green Bay Packers | Buffalo Bills | Carolina Panthers | Detroit Lions | Indianapolis Colts | Jacksonville Jaguars | Kansas City Chiefs | Tennessee Titans | Cincinnati Bengals | Seattle Seahawks | San Francisco 49ers | Minnesota Vikings | Las Vegas Raiders | Baltimore Ravens | Denver Broncos | Philadelphia Eagles | 42 |
+| Jake Nobriga | Green Bay Packers | Buffalo Bills | Carolina Panthers | Detroit Lions | Houston Texans | Jacksonville Jaguars | Kansas City Chiefs | Tennessee Titans | Cincinnati Bengals | Seattle Seahawks | San Francisco 49ers | Minnesota Vikings | Las Vegas Raiders | Baltimore Ravens | Los Angeles Rams | Philadelphia Eagles | 38 |
+| Zach Bacskay | Green Bay Packers | Buffalo Bills | Carolina Panthers | Detroit Lions | Houston Texans | Jacksonville Jaguars | Kansas City Chiefs | Tennessee Titans | Cincinnati Bengals | Seattle Seahawks | San Francisco 49ers | Minnesota Vikings | New Orleans Saints | Baltimore Ravens | Los Angeles Rams | Philadelphia Eagles | 41 |
+| James Keller | Green Bay Packers | Buffalo Bills | Carolina Panthers | Detroit Lions | Indianapolis Colts | Jacksonville Jaguars | Kansas City Chiefs | Tennessee Titans | Cincinnati Bengals | Seattle Seahawks | San Francisco 49ers | Minnesota Vikings | New Orleans Saints | Baltimore Ravens | Denver Broncos | Philadelphia Eagles | 57 |
+| Boomer | Green Bay Packers | Buffalo Bills | Carolina Panthers | Detroit Lions | Houston Texans | Jacksonville Jaguars | Kansas City Chiefs | Tennessee Titans | Cincinnati Bengals | Seattle Seahawks | San Francisco 49ers | Minnesota Vikings | Las Vegas Raiders | Baltimore Ravens | Los Angeles Rams | Philadelphia Eagles | 41 |
+| Quick | Green Bay Packers | Buffalo Bills | Carolina Panthers | Detroit Lions | Indianapolis Colts | New England Patriots | Kansas City Chiefs | Tennessee Titans | Cincinnati Bengals | Seattle Seahawks | San Francisco 49ers | Minnesota Vikings | New Orleans Saints | Baltimore Ravens | Los Angeles Rams | Philadelphia Eagles | 31 |
+| KrisZ | Green Bay Packers | Buffalo Bills | Cleveland Browns | Detroit Lions | Houston Texans | Jacksonville Jaguars | Kansas City Chiefs | New York Giants | Cincinnati Bengals | Seattle Seahawks | San Francisco 49ers | Minnesota Vikings | Las Vegas Raiders | Baltimore Ravens | Denver Broncos | Philadelphia Eagles | 32 |
+| Rob | Green Bay Packers | Buffalo Bills | Carolina Panthers | Detroit Lions | Houston Texans | Jacksonville Jaguars | Kansas City Chiefs | Tennessee Titans | Cincinnati Bengals | Seattle Seahawks | San Francisco 49ers | Minnesota Vikings | New Orleans Saints | Baltimore Ravens | Denver Broncos | Philadelphia Eagles | 53 |
+| Matt craven | Green Bay Packers | Buffalo Bills | Carolina Panthers | Detroit Lions | Indianapolis Colts | Jacksonville Jaguars | Kansas City Chiefs | Tennessee Titans | Cincinnati Bengals | Seattle Seahawks | San Francisco 49ers | Tampa Bay Buccaneers | Las Vegas Raiders | Baltimore Ravens | Los Angeles Rams | Philadelphia Eagles | 47 |
+| Cheyenne k | Green Bay Packers | Buffalo Bills | Carolina Panthers | Detroit Lions | Houston Texans | New England Patriots | Kansas City Chiefs | New York Giants | Pittsburgh Steelers | Washington Commanders | San Francisco 49ers | Minnesota Vikings | Las Vegas Raiders | Baltimore Ravens | Denver Broncos | Philadelphia Eagles | 35 |
 `;
 
 function esc(s) {
@@ -488,33 +507,33 @@ function renderLeaderboard() {
 // This form's entry IDs stay fixed week to week; only the matchups/options below
 // need to change. Editing the same Google Form's question text/options (rather
 // than recreating questions) keeps these IDs valid.
-const CURRENT_WEEK = 3;
+const CURRENT_WEEK = 4;
 // Picks close once the first game of the week kicks off — update this every week to
-// match Game 1's kickoff time (in UTC). Thu 9/24/2026 8:15 PM ET (EDT, UTC-4) = below.
-const PICKS_LOCK_AT = "2026-09-25T00:15:00Z";
+// match Game 1's kickoff time (in UTC). Thu 10/1/2026 8:15 PM ET (EDT, UTC-4) = below.
+const PICKS_LOCK_AT = "2026-10-02T00:15:00Z";
 function isPicksLocked() {
   return Date.now() >= new Date(PICKS_LOCK_AT).getTime();
 }
-const FORM_ACTION_URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdl-sUg_Fui1-Al5hmoLHGvbmcTZiLcjs8fY9eb26-lvIULFQ/formResponse";
-const NAME_ENTRY = "entry.85148305";
-const TIEBREAKER_ENTRY = "entry.533836565";
+const FORM_ACTION_URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSftFvuBV-_26HckQJNyZURh_PsuQ_9mnjmCd0l2vnENtiSKlw/formResponse";
+const NAME_ENTRY = "entry.1042254620";
+const TIEBREAKER_ENTRY = "entry.863364656";
 const GAMES = [
-  { matchup: "Atlanta Falcons @ Green Bay Packers", kickoff: "Thu 9/24 8:15 PM ET (Prime Video)", away: "Atlanta Falcons", home: "Green Bay Packers", entry: "entry.1110295176" },
-  { matchup: "Los Angeles Chargers @ Buffalo Bills", kickoff: "Sun 9/27 1:00 PM ET (FOX)", away: "Los Angeles Chargers", home: "Buffalo Bills", entry: "entry.1423976030" },
-  { matchup: "Carolina Panthers @ Cleveland Browns", kickoff: "Sun 9/27 1:00 PM ET (FOX)", away: "Carolina Panthers", home: "Cleveland Browns", entry: "entry.270573806" },
-  { matchup: "New York Jets @ Detroit Lions", kickoff: "Sun 9/27 1:00 PM ET (FOX)", away: "New York Jets", home: "Detroit Lions", entry: "entry.33006624" },
-  { matchup: "Houston Texans @ Indianapolis Colts", kickoff: "Sun 9/27 1:00 PM ET (CBS)", away: "Houston Texans", home: "Indianapolis Colts", entry: "entry.1854522068" },
-  { matchup: "New England Patriots @ Jacksonville Jaguars", kickoff: "Sun 9/27 1:00 PM ET (CBS)", away: "New England Patriots", home: "Jacksonville Jaguars", entry: "entry.23686186" },
-  { matchup: "Kansas City Chiefs @ Miami Dolphins", kickoff: "Sun 9/27 1:00 PM ET (CBS)", away: "Kansas City Chiefs", home: "Miami Dolphins", entry: "entry.746534664" },
-  { matchup: "Tennessee Titans @ New York Giants", kickoff: "Sun 9/27 1:00 PM ET (CBS)", away: "Tennessee Titans", home: "New York Giants", entry: "entry.851955300" },
-  { matchup: "Cincinnati Bengals @ Pittsburgh Steelers", kickoff: "Sun 9/27 1:00 PM ET (CBS)", away: "Cincinnati Bengals", home: "Pittsburgh Steelers", entry: "entry.1816468497" },
-  { matchup: "Seattle Seahawks @ Washington Commanders", kickoff: "Sun 9/27 1:00 PM ET (FOX)", away: "Seattle Seahawks", home: "Washington Commanders", entry: "entry.154070496" },
-  { matchup: "Arizona Cardinals @ San Francisco 49ers", kickoff: "Sun 9/27 4:05 PM ET (FOX)", away: "Arizona Cardinals", home: "San Francisco 49ers", entry: "entry.620442871" },
-  { matchup: "Minnesota Vikings @ Tampa Bay Buccaneers", kickoff: "Sun 9/27 4:05 PM ET (FOX)", away: "Minnesota Vikings", home: "Tampa Bay Buccaneers", entry: "entry.1529658673" },
-  { matchup: "Las Vegas Raiders @ New Orleans Saints", kickoff: "Sun 9/27 4:25 PM ET (CBS)", away: "Las Vegas Raiders", home: "New Orleans Saints", entry: "entry.1439200320" },
-  { matchup: "Baltimore Ravens @ Dallas Cowboys", kickoff: "Sun 9/27 4:25 PM ET (CBS)", away: "Baltimore Ravens", home: "Dallas Cowboys", entry: "entry.430341517" },
-  { matchup: "Los Angeles Rams @ Denver Broncos", kickoff: "Sun 9/27 8:20 PM ET (NBC)", away: "Los Angeles Rams", home: "Denver Broncos", entry: "entry.511724375" },
-  { matchup: "Philadelphia Eagles @ Chicago Bears", kickoff: "Mon 9/28 8:15 PM ET (ESPN)", away: "Philadelphia Eagles", home: "Chicago Bears", entry: "entry.486322034", tiebreaker: true }
+  { matchup: "Pittsburgh Steelers @ Cleveland Browns", kickoff: "Thu 10/1 8:15 PM ET (Prime Video)", away: "Pittsburgh Steelers", home: "Cleveland Browns", entry: "entry.1430673861" },
+  { matchup: "Indianapolis Colts @ Washington Commanders", kickoff: "Sun 10/4 9:30 AM ET (NFL Network)", away: "Indianapolis Colts", home: "Washington Commanders", entry: "entry.2108949720" },
+  { matchup: "New England Patriots @ Buffalo Bills", kickoff: "Sun 10/4 1:00 PM ET (CBS)", away: "New England Patriots", home: "Buffalo Bills", entry: "entry.1832158450" },
+  { matchup: "New York Jets @ Chicago Bears", kickoff: "Sun 10/4 1:00 PM ET (FOX)", away: "New York Jets", home: "Chicago Bears", entry: "entry.326102835" },
+  { matchup: "Jacksonville Jaguars @ Cincinnati Bengals", kickoff: "Sun 10/4 1:00 PM ET (CBS)", away: "Jacksonville Jaguars", home: "Cincinnati Bengals", entry: "entry.1169487905" },
+  { matchup: "Arizona Cardinals @ New York Giants", kickoff: "Sun 10/4 1:00 PM ET (CBS)", away: "Arizona Cardinals", home: "New York Giants", entry: "entry.441562585" },
+  { matchup: "Los Angeles Rams @ Philadelphia Eagles", kickoff: "Sun 10/4 1:00 PM ET (FOX)", away: "Los Angeles Rams", home: "Philadelphia Eagles", entry: "entry.145057882" },
+  { matchup: "Green Bay Packers @ Tampa Bay Buccaneers", kickoff: "Sun 10/4 1:00 PM ET (FOX)", away: "Green Bay Packers", home: "Tampa Bay Buccaneers", entry: "entry.1796722167" },
+  { matchup: "Tennessee Titans @ Baltimore Ravens", kickoff: "Sun 10/4 1:00 PM ET (CBS)", away: "Tennessee Titans", home: "Baltimore Ravens", entry: "entry.53406833" },
+  { matchup: "Dallas Cowboys @ Houston Texans", kickoff: "Sun 10/4 1:00 PM ET (FOX)", away: "Dallas Cowboys", home: "Houston Texans", entry: "entry.217602783" },
+  { matchup: "Miami Dolphins @ Minnesota Vikings", kickoff: "Sun 10/4 4:05 PM ET (FOX)", away: "Miami Dolphins", home: "Minnesota Vikings", entry: "entry.2030992036" },
+  { matchup: "Kansas City Chiefs @ Las Vegas Raiders", kickoff: "Sun 10/4 4:25 PM ET (CBS)", away: "Kansas City Chiefs", home: "Las Vegas Raiders", entry: "entry.819301550" },
+  { matchup: "Denver Broncos @ San Francisco 49ers", kickoff: "Sun 10/4 4:25 PM ET (CBS)", away: "Denver Broncos", home: "San Francisco 49ers", entry: "entry.1153349899" },
+  { matchup: "Los Angeles Chargers @ Seattle Seahawks", kickoff: "Sun 10/4 4:25 PM ET (CBS)", away: "Los Angeles Chargers", home: "Seattle Seahawks", entry: "entry.143664362" },
+  { matchup: "Detroit Lions @ Carolina Panthers", kickoff: "Sun 10/4 8:20 PM ET (NBC)", away: "Detroit Lions", home: "Carolina Panthers", entry: "entry.2136714502" },
+  { matchup: "Atlanta Falcons @ New Orleans Saints", kickoff: "Mon 10/5 8:15 PM ET (ESPN)", away: "Atlanta Falcons", home: "New Orleans Saints", entry: "entry.781702657", tiebreaker: true }
 ];
 
 // ---------- Live "Week N Picks" — reads straight from the Form's response sheet ----------
@@ -523,7 +542,7 @@ const GAMES = [
 // If a new Google Form is ever created for a future week, update this URL to match
 // (Form editor -> Responses -> View in Sheets -> File -> Share -> Publish to web ->
 // select the "Form Responses" sheet -> format "Comma-separated values (.csv)" -> Publish).
-const PICKS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQa2zV86VpzHY-Bmr1Sk610u1JXbfKT2lgKB9hBJU6DvyuXLWoYtANt-42Knc26Zp8iVDlqB_VgzHJw/pub?gid=1977380086&single=true&output=csv";
+const PICKS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS_jjqK4CQCw5LQrmBHJouRT9ybvQppaCz4Cu3i8lWW3H4zRuzr-AOlGcRnfsV0Y7ecxXAY57i-4lQs/pub?gid=293509158&single=true&output=csv";
 
 function parseCSV(text) {
   const rows = [];
@@ -572,6 +591,7 @@ function renderLivePicksTable(rows) {
     const name = (r[1] || '').trim();
     if (name) byName.set(name, r);
   });
+
   const finalRows = Array.from(byName.values());
   if (!finalRows.length) {
     return '<p class="muted">No picks submitted yet for Week ' + CURRENT_WEEK + '.</p>';
@@ -604,6 +624,7 @@ async function loadLivePicks() {
     const text = await res.text();
     const rows = parseCSV(text);
     contentEl.innerHTML = renderLivePicksTable(rows);
+
     // Count unique named submitters only — blank filler rows in the sheet shouldn't inflate this.
     const names = new Set((rows.slice(1) || []).map(r => (r[1] || '').trim()).filter(Boolean));
     const count = names.size;
@@ -868,5 +889,5 @@ renderPicksTab();
 loadLivePicks();
 loadLiveGrades();
 </script>
-</body>
-</html>
+
+</body></html>
