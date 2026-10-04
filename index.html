@@ -555,6 +555,22 @@ const GAMES = [
 // select the "Form Responses" sheet -> format "Comma-separated values (.csv)" -> Publish).
 const PICKS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS_jjqK4CQCw5LQrmBHJouRT9ybvQppaCz4Cu3i8lWW3H4zRuzr-AOlGcRnfsV0Y7ecxXAY57i-4lQs/pub?gid=293509158&single=true&output=csv";
 
+// ---------- Column mapping — matches CSV/report columns to GAMES by team names ----------
+// IMPORTANT: a Google Form's question (and therefore response-sheet column) order is
+// NOT guaranteed to match the order games are listed in the GAMES array above — e.g.
+// when a form is duplicated from a differently-ordered template. Never assume column
+// index "2 + gameIndex" lines up with GAMES[gameIndex]; always resolve the column for
+// each game by matching the header text against that game's away/home team names.
+function buildGameColumnMap(headerRow) {
+const byGame = GAMES.map(g => headerRow.findIndex(h => h && h.includes(g.away) && h.includes(g.home)));
+const used = new Set(byGame.filter(i => i >= 0));
+let tbCol = -1;
+for (let c = 2; c < headerRow.length; c++) {
+if (!used.has(c)) { tbCol = c; break; }
+}
+return { byGame, tbCol };
+}
+
 function parseCSV(text) {
 const rows = [];
 let row = [], field = '', inQuotes = false;
@@ -577,23 +593,12 @@ if (field.length || row.length) { row.push(field); rows.push(row); }
 return rows.filter(r => !(r.length === 1 && r[0] === ''));
 }
 
-function renderLivePicksShell() {
-const el = document.getElementById('live-picks');
-if (!el) return;
-el.innerHTML = `
-<div class="card">
-<div class="week-header">
-<h2 style="margin:0;">Week ${CURRENT_WEEK} Picks — Live</h2>
-<span class="tag" id="live-picks-tag">Loading…</span>
-</div>
-<div id="live-picks-content"><p class="muted">Loading…</p></div>
-</div>`;
-}
-
 function renderLivePicksTable(rows) {
 if (!rows || rows.length < 2) {
 return '<p class="muted">No picks submitted yet for Week ' + CURRENT_WEEK + '.</p>';
 }
+const header = rows[0];
+const { byGame, tbCol } = buildGameColumnMap(header);
 const dataRows = rows.slice(1);
 // Keep only the most recent submission per name (rows are in submission order,
 // so the last row for a given name wins).
@@ -610,8 +615,8 @@ return '<p class="muted">No picks submitted yet for Week ' + CURRENT_WEEK + '.</
 
 const headerCells = GAMES.map(g => `<th>${esc(g.matchup)}</th>`).join('');
 const bodyRows = finalRows.map(r => {
-const cells = GAMES.map((g, i) => `<td class="pick-cell">${esc(r[2 + i] || '')}</td>`).join('');
-const tb = r[2 + GAMES.length] || '';
+const cells = GAMES.map((g, i) => `<td class="pick-cell">${esc(byGame[i] >= 0 ? (r[byGame[i]] || '') : '')}</td>`).join('');
+const tb = tbCol >= 0 ? (r[tbCol] || '') : '';
 return `<tr><td class="name-cell">${esc(r[1])}</td>${cells}<td class="num">${esc(tb)}</td></tr>`;
 }).join('');
 
@@ -622,6 +627,19 @@ return `
 <thead><tr><th>Name</th>${headerCells}<th>TB Guess</th></tr></thead>
 <tbody>${bodyRows}</tbody>
 </table>
+</div>`;
+}
+
+function renderLivePicksShell() {
+const el = document.getElementById('live-picks');
+if (!el) return;
+el.innerHTML = `
+<div class="card">
+<div class="week-header">
+<h2 style="margin:0;">Week ${CURRENT_WEEK} Picks — Live</h2>
+<span class="tag" id="live-picks-tag">Loading…</span>
+</div>
+<div id="live-picks-content"><p class="muted">Loading…</p></div>
 </div>`;
 }
 
@@ -720,6 +738,8 @@ const decidedCount = results.filter(r => r.decided).length;
 const tiebreakerResult = results.find(r => r.tiebreaker);
 
 const rows = parseCSV(picksText);
+const header = rows[0] || [];
+const { byGame, tbCol } = buildGameColumnMap(header);
 const dataRows = rows.slice(1);
 const byName = new Map();
 dataRows.forEach(r => { const name = (r[1] || '').trim(); if (name) byName.set(name, r); });
@@ -728,9 +748,10 @@ const standings = Array.from(byName.values()).map(r => {
 let correct = 0;
 GAMES.forEach((g, i) => {
 const res = results[i];
-if (res.decided && res.winner !== 'TIE' && r[2 + i] === res.winner) correct++;
+const col = byGame[i];
+if (res.decided && res.winner !== 'TIE' && col >= 0 && r[col] === res.winner) correct++;
 });
-const tbGuess = Number(r[2 + GAMES.length]);
+const tbGuess = tbCol >= 0 ? Number(r[tbCol]) : NaN;
 const diff = (tiebreakerResult && tiebreakerResult.decided && tiebreakerResult.actualTotal != null && !isNaN(tbGuess))
 ? Math.abs(tbGuess - tiebreakerResult.actualTotal) : null;
 return { name: (r[1] || '').trim(), correct, diff };
