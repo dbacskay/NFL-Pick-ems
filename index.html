@@ -8,125 +8,125 @@
 <title>Pick'em Leaderboard Snapshot</title>
 <style>
 :root {
---bg: #f4f5f7;
---card-bg: #ffffff;
---text: #1a1a2e;
---text-muted: #666666;
---border: #e2e2e6;
---row-border: #f0f0f0;
---accent: #4338ca;
---accent-bg: #eef2ff;
---gold: #c9971e;
---silver: #8a8f98;
---bronze: #b5651d;
---win-bg: #fff8e1;
---pill-bg: #fff3cd;
---pill-text: #8a6d00;
---correct: #16a34a;
---wrong: #b91c1c;
---error-bg: #fef2f2;
---error-text: #991b1b;
---ok-text: #166534;
---actual-bg: #f8f9fb;
---footer-text: #aaaaaa;
---btn-disabled-bg: #c7c7d1;
+  --bg: #f4f5f7;
+  --card-bg: #ffffff;
+  --text: #1a1a2e;
+  --text-muted: #666666;
+  --border: #e2e2e6;
+  --row-border: #f0f0f0;
+  --accent: #4338ca;
+  --accent-bg: #eef2ff;
+  --gold: #c9971e;
+  --silver: #8a8f98;
+  --bronze: #b5651d;
+  --win-bg: #fff8e1;
+  --pill-bg: #fff3cd;
+  --pill-text: #8a6d00;
+  --correct: #16a34a;
+  --wrong: #b91c1c;
+  --error-bg: #fef2f2;
+  --error-text: #991b1b;
+  --ok-text: #166534;
+  --actual-bg: #f8f9fb;
+  --footer-text: #aaaaaa;
+  --btn-disabled-bg: #c7c7d1;
 }
 @media (prefers-color-scheme: dark) {
-:root:not([data-theme="light"]) {
---bg: #14151d;
---card-bg: #1d1f2b;
---text: #e8e8f0;
---text-muted: #9a9aa8;
---border: #2c2e3c;
---row-border: #2a2c38;
---accent: #9797f7;
---accent-bg: #262a4a;
---gold: #e0b84a;
---silver: #a8adb8;
---bronze: #d18a4a;
---win-bg: #3a3320;
---pill-bg: #4a3f1a;
---pill-text: #ffd75e;
---correct: #4ade80;
---wrong: #f87171;
---error-bg: #3a1e1e;
---error-text: #ff9d9d;
---ok-text: #4ade80;
---actual-bg: #242633;
---footer-text: #6a6c78;
---btn-disabled-bg: #3d3f4d;
-}
+  :root:not([data-theme="light"]) {
+    --bg: #14151d;
+    --card-bg: #1d1f2b;
+    --text: #e8e8f0;
+    --text-muted: #9a9aa8;
+    --border: #2c2e3c;
+    --row-border: #2a2c38;
+    --accent: #9797f7;
+    --accent-bg: #262a4a;
+    --gold: #e0b84a;
+    --silver: #a8adb8;
+    --bronze: #d18a4a;
+    --win-bg: #3a3320;
+    --pill-bg: #4a3f1a;
+    --pill-text: #ffd75e;
+    --correct: #4ade80;
+    --wrong: #f87171;
+    --error-bg: #3a1e1e;
+    --error-text: #ff9d9d;
+    --ok-text: #4ade80;
+    --actual-bg: #242633;
+    --footer-text: #6a6c78;
+    --btn-disabled-bg: #3d3f4d;
+  }
 }
 :root[data-theme="dark"] {
---bg: #14151d;
---card-bg: #1d1f2b;
---text: #e8e8f0;
---text-muted: #9a9aa8;
---border: #2c2e3c;
---row-border: #2a2c38;
---accent: #9797f7;
---accent-bg: #262a4a;
---gold: #e0b84a;
---silver: #a8adb8;
---bronze: #d18a4a;
---win-bg: #3a3320;
---pill-bg: #4a3f1a;
---pill-text: #ffd75e;
---correct: #4ade80;
---wrong: #f87171;
---error-bg: #3a1e1e;
---error-text: #ff9d9d;
---ok-text: #4ade80;
---actual-bg: #242633;
---footer-text: #6a6c78;
---btn-disabled-bg: #3d3f4d;
+  --bg: #14151d;
+  --card-bg: #1d1f2b;
+  --text: #e8e8f0;
+  --text-muted: #9a9aa8;
+  --border: #2c2e3c;
+  --row-border: #2a2c38;
+  --accent: #9797f7;
+  --accent-bg: #262a4a;
+  --gold: #e0b84a;
+  --silver: #a8adb8;
+  --bronze: #d18a4a;
+  --win-bg: #3a3320;
+  --pill-bg: #4a3f1a;
+  --pill-text: #ffd75e;
+  --correct: #4ade80;
+  --wrong: #f87171;
+  --error-bg: #3a1e1e;
+  --error-text: #ff9d9d;
+  --ok-text: #4ade80;
+  --actual-bg: #242633;
+  --footer-text: #6a6c78;
+  --btn-disabled-bg: #3d3f4d;
 }
 * { box-sizing: border-box; }
 img { max-width: 100%; height: auto; }
 body {
-margin: 0;
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-background: var(--bg);
-color: var(--text);
-padding: 24px 16px;
-padding-block: 24px;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 24px 16px;
+  padding-block: 24px;
 }
 .wrap { max-width: 820px; margin: 0 auto; }
 h1 {
-font-size: 24px;
-margin: 0 0 4px 0;
-display: flex;
-align-items: center;
-gap: 8px;
+  font-size: 24px;
+  margin: 0 0 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; }
 .tabs {
-display: flex;
-gap: 6px;
-margin-bottom: 18px;
-border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 6px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border);
 }
 .tab-btn {
-border: none;
-background: none;
-font-size: 14px;
-font-weight: 600;
-color: var(--text-muted);
-padding: 10px 4px;
-cursor: pointer;
-border-bottom: 2px solid transparent;
-margin-right: 18px;
-font-family: inherit;
+  border: none;
+  background: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 10px 4px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-right: 18px;
+  font-family: inherit;
 }
 .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 .card {
-background: var(--card-bg);
-border-radius: 14px;
-box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
-padding: 20px;
-margin-bottom: 20px;
+  background: var(--card-bg);
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  padding: 20px;
+  margin-bottom: 20px;
 }
 .card h2 { font-size: 16px; margin: 0 0 14px 0; color: var(--text); }
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
@@ -141,40 +141,40 @@ tbody tr.winner-row { background: linear-gradient(90deg, var(--win-bg), transpar
 .rank-3 { color: var(--bronze); }
 .name-cell { font-weight: 600; white-space: nowrap; }
 @media (max-width: 480px) {
-.name-cell { white-space: normal; }
+  .name-cell { white-space: normal; }
 }
 .medal { margin-right: 4px; }
 .pill {
-display: inline-block;
-font-size: 11px;
-font-weight: 700;
-padding: 2px 8px;
-border-radius: 20px;
-background: var(--pill-bg);
-color: var(--pill-text);
-margin-left: 6px;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  margin-left: 6px;
 }
 .num { text-align: right; font-variant-numeric: tabular-nums; }
 .muted { color: var(--text-muted); }
 .week-header { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
 .week-header .tag {
-font-size: 12px; background: var(--accent-bg); color: var(--accent);
-padding: 3px 10px; border-radius: 20px; font-weight: 600;
+  font-size: 12px; background: var(--accent-bg); color: var(--accent);
+  padding: 3px 10px; border-radius: 20px; font-weight: 600;
 }
 .error {
-background: var(--error-bg); color: var(--error-text); border-radius: 10px;
-padding: 14px 16px; font-size: 13px; white-space: pre-wrap;
+  background: var(--error-bg); color: var(--error-text); border-radius: 10px;
+  padding: 14px 16px; font-size: 13px; white-space: pre-wrap;
 }
 .footer-note { text-align: center; color: var(--footer-text); font-size: 12px; margin-top: 8px; }
 .grid-scroll { overflow-x: auto; position: relative; }
 .grid-scroll table { min-width: 720px; }
 .grid-scroll th:first-child, .grid-scroll td:first-child {
-position: sticky; left: 0; background: var(--card-bg); z-index: 1;
+  position: sticky; left: 0; background: var(--card-bg); z-index: 1;
 }
 .grid-scroll .actual-row td:first-child { background: var(--actual-bg); }
 .scroll-hint { display: none; font-size: 12px; color: var(--text-muted); margin: -4px 0 10px 0; }
 @media (max-width: 640px) {
-.scroll-hint { display: block; }
+  .scroll-hint { display: block; }
 }
 .lock-msg { padding: 6px 0; }
 .pick-cell.correct { color: var(--correct); font-weight: 700; }
@@ -186,53 +186,53 @@ position: sticky; left: 0; background: var(--card-bg); z-index: 1;
 .game-title { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
 .game-time { color: var(--text-muted); font-size: 12px; margin-bottom: 10px; }
 .tb-badge {
-font-size: 11px; font-weight: 700; background: var(--accent-bg); color: var(--accent);
-padding: 2px 8px; border-radius: 20px; margin-left: 6px;
+  font-size: 11px; font-weight: 700; background: var(--accent-bg); color: var(--accent);
+  padding: 2px 8px; border-radius: 20px; margin-left: 6px;
 }
 .choice-row { display: flex; gap: 10px; flex-wrap: wrap; }
 .choice-label {
-flex: 1;
-min-width: 120px;
-border: 1.5px solid var(--border);
-border-radius: 10px;
-padding: 10px 12px;
-text-align: center;
-font-size: 13px;
-font-weight: 600;
-cursor: pointer;
-user-select: none;
-color: var(--text);
+  flex: 1;
+  min-width: 120px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  color: var(--text);
 }
 .choice-label input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .choice-label.selected { border-color: var(--accent); background: var(--accent-bg); color: var(--accent); }
 input[type="text"], input[type="number"] {
-width: 100%;
-border: 1.5px solid var(--border);
-border-radius: 10px;
-padding: 10px 12px;
-font-size: 14px;
-font-family: inherit;
-background: var(--card-bg);
-color: var(--text);
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  background: var(--card-bg);
+  color: var(--text);
 }
 label.field-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
 .field-block { margin-bottom: 16px; }
 .cta-btn {
-display: inline-block;
-background: var(--accent);
-color: #fff;
-font-weight: 700;
-font-size: 14px;
-padding: 12px 22px;
-border-radius: 10px;
-text-decoration: none;
-border: none;
-cursor: pointer;
-font-family: inherit;
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
 }
 .cta-btn:disabled { background: var(--btn-disabled-bg); cursor: default; }
 .cta-btn:focus-visible, .tab-btn:focus-visible, .choice-label:focus-within {
-outline: 2px solid var(--accent); outline-offset: 2px;
+  outline: 2px solid var(--accent); outline-offset: 2px;
 }
 .submit-msg { margin-top: 14px; font-size: 13px; }
 .submit-msg.ok { color: var(--ok-text); }
@@ -347,184 +347,184 @@ const TRACKER_TEXT = `
 `;
 
 function esc(s) {
-return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
 function parseSections(text) {
-const lines = text.split('\n').map(l => l.trim()).filter(l => l.startsWith('|'));
-const rows = lines.map(line => {
-let cells = line.split('|').map(c => c.trim());
-if (cells[0] === '') cells = cells.slice(1);
-if (cells[cells.length - 1] === '') cells = cells.slice(0, -1);
-return cells;
-});
+  const lines = text.split('\n').map(l => l.trim()).filter(l => l.startsWith('|'));
+  const rows = lines.map(line => {
+    let cells = line.split('|').map(c => c.trim());
+    if (cells[0] === '') cells = cells.slice(1);
+    if (cells[cells.length - 1] === '') cells = cells.slice(0, -1);
+    return cells;
+  });
 
-const isBlank = cells => cells.every(c => c === '');
-const isSeparator = cells => !isBlank(cells) && cells.every(c => /^:?-{1,3}:?$/.test(c) || c === '');
+  const isBlank = cells => cells.every(c => c === '');
+  const isSeparator = cells => !isBlank(cells) && cells.every(c => /^:?-{1,3}:?$/.test(c) || c === '');
 
-const sections = {};
-let currentName = null;
-let headers = null;
-let dataRows = [];
+  const sections = {};
+  let currentName = null;
+  let headers = null;
+  let dataRows = [];
 
-const flush = () => {
-if (currentName && headers) {
-sections[currentName] = dataRows.map(r => {
-const obj = {};
-headers.forEach((h, i) => obj[h] = r[i] !== undefined ? r[i] : '');
-return obj;
-});
-}
-};
+  const flush = () => {
+    if (currentName && headers) {
+      sections[currentName] = dataRows.map(r => {
+        const obj = {};
+        headers.forEach((h, i) => obj[h] = r[i] !== undefined ? r[i] : '');
+        return obj;
+      });
+    }
+  };
 
-for (const cells of rows) {
-if (isBlank(cells)) { flush(); currentName = null; headers = null; dataRows = []; continue; }
-if (isSeparator(cells)) continue;
-const nonEmpty = cells.filter(c => c !== '');
-if (!headers && nonEmpty.length === 1 && cells[0] !== '') {
-flush();
-currentName = cells[0];
-headers = null;
-dataRows = [];
-continue;
-}
-if (currentName && !headers) { headers = cells; continue; }
-if (currentName && headers) { dataRows.push(cells); }
-}
-flush();
-return sections;
+  for (const cells of rows) {
+    if (isBlank(cells)) { flush(); currentName = null; headers = null; dataRows = []; continue; }
+    if (isSeparator(cells)) continue;
+    const nonEmpty = cells.filter(c => c !== '');
+    if (!headers && nonEmpty.length === 1 && cells[0] !== '') {
+      flush();
+      currentName = cells[0];
+      headers = null;
+      dataRows = [];
+      continue;
+    }
+    if (currentName && !headers) { headers = cells; continue; }
+    if (currentName && headers) { dataRows.push(cells); }
+  }
+  flush();
+  return sections;
 }
 
 function medal(rank) {
-if (rank === '1') return '<span class="medal">🥇</span>';
-if (rank === '2') return '<span class="medal">🥈</span>';
-if (rank === '3') return '<span class="medal">🥉</span>';
-return '';
+  if (rank === '1') return '<span class="medal">🥇</span>';
+  if (rank === '2') return '<span class="medal">🥈</span>';
+  if (rank === '3') return '<span class="medal">🥉</span>';
+  return '';
 }
 
 function renderStandings(rows) {
-if (!rows || !rows.length) return '<p class="muted">No season standings yet.</p>';
-const sorted = [...rows].sort((a, b) => Number(a['Season Rank']) - Number(b['Season Rank']));
-const body = sorted.map(r => {
-const rankClass = r['Season Rank'] === '1' ? 'rank-1' : r['Season Rank'] === '2' ? 'rank-2' : r['Season Rank'] === '3' ? 'rank-3' : '';
-const weeksWon = Number(r['Weeks Won'] || 0);
-return `<tr>
-<td class="rank-cell ${rankClass}">${medal(r['Season Rank'])}${esc(r['Season Rank'])}</td>
-<td class="name-cell">${esc(r['Name'])}${weeksWon > 0 ? `<span class="pill">${weeksWon} week${weeksWon > 1 ? 's' : ''} won</span>` : ''}</td>
-<td class="num">${esc(r['Total Correct'])}/${esc(r['Total Games Graded'])}</td>
-<td class="num">${esc(r['Avg Tiebreaker Diff'])}</td>
-</tr>`;
-}).join('');
-return `<table>
-<thead><tr><th>Rank</th><th>Name</th><th class="num">Correct</th><th class="num">Avg TB Diff</th></tr></thead>
-<tbody>${body}</tbody>
-</table>`;
+  if (!rows || !rows.length) return '<p class="muted">No season standings yet.</p>';
+  const sorted = [...rows].sort((a, b) => Number(a['Season Rank']) - Number(b['Season Rank']));
+  const body = sorted.map(r => {
+    const rankClass = r['Season Rank'] === '1' ? 'rank-1' : r['Season Rank'] === '2' ? 'rank-2' : r['Season Rank'] === '3' ? 'rank-3' : '';
+    const weeksWon = Number(r['Weeks Won'] || 0);
+    return `<tr>
+      <td class="rank-cell ${rankClass}">${medal(r['Season Rank'])}${esc(r['Season Rank'])}</td>
+      <td class="name-cell">${esc(r['Name'])}${weeksWon > 0 ? `<span class="pill">${weeksWon} week${weeksWon > 1 ? 's' : ''} won</span>` : ''}</td>
+      <td class="num">${esc(r['Total Correct'])}/${esc(r['Total Games Graded'])}</td>
+      <td class="num">${esc(r['Avg Tiebreaker Diff'])}</td>
+    </tr>`;
+  }).join('');
+  return `<table>
+    <thead><tr><th>Rank</th><th>Name</th><th class="num">Correct</th><th class="num">Avg TB Diff</th></tr></thead>
+    <tbody>${body}</tbody>
+  </table>`;
 }
 
 function renderWeekly(rows) {
-if (!rows || !rows.length) return { html: '<p class="muted">No weeks graded yet.</p>', week: null };
-const latestWeek = Math.max(...rows.map(r => Number(r['Week'])));
-const weekRows = rows.filter(r => Number(r['Week']) === latestWeek)
-.sort((a, b) => Number(a['Rank']) - Number(b['Rank']));
-const body = weekRows.map(r => {
-const won = (r['Won'] || '').toUpperCase() === 'Y';
-return `<tr class="${won ? 'winner-row' : ''}">
-<td class="rank-cell">${medal(r['Rank'])}${esc(r['Rank'])}</td>
-<td class="name-cell">${esc(r['Name'])}${won ? '<span class="pill">👑 Winner</span>' : ''}</td>
-<td class="num">${esc(r['Correct'])}/${esc(r['Total Games'])}</td>
-<td class="num">${esc(r['Tiebreaker Guess'])}</td>
-<td class="num">${esc(r['Diff'])}</td>
-</tr>`;
-}).join('');
-return {
-week: latestWeek,
-html: `<table>
-<thead><tr><th>Rank</th><th>Name</th><th class="num">Correct</th><th class="num">TB Guess</th><th class="num">Diff</th></tr></thead>
-<tbody>${body}</tbody>
-</table>`
-};
+  if (!rows || !rows.length) return { html: '<p class="muted">No weeks graded yet.</p>', week: null };
+  const latestWeek = Math.max(...rows.map(r => Number(r['Week'])));
+  const weekRows = rows.filter(r => Number(r['Week']) === latestWeek)
+    .sort((a, b) => Number(a['Rank']) - Number(b['Rank']));
+  const body = weekRows.map(r => {
+    const won = (r['Won'] || '').toUpperCase() === 'Y';
+    return `<tr class="${won ? 'winner-row' : ''}">
+      <td class="rank-cell">${medal(r['Rank'])}${esc(r['Rank'])}</td>
+      <td class="name-cell">${esc(r['Name'])}${won ? '<span class="pill">👑 Winner</span>' : ''}</td>
+      <td class="num">${esc(r['Correct'])}/${esc(r['Total Games'])}</td>
+      <td class="num">${esc(r['Tiebreaker Guess'])}</td>
+      <td class="num">${esc(r['Diff'])}</td>
+    </tr>`;
+  }).join('');
+  return {
+    week: latestWeek,
+    html: `<table>
+      <thead><tr><th>Rank</th><th>Name</th><th class="num">Correct</th><th class="num">TB Guess</th><th class="num">Diff</th></tr></thead>
+      <tbody>${body}</tbody>
+    </table>`
+  };
 }
 
 function findLatestPicksSection(sections) {
-let best = null, bestWeek = -1;
-for (const key of Object.keys(sections)) {
-const m = key.match(/^Week (\d+) Picks$/i);
-if (m) {
-const w = Number(m[1]);
-if (w > bestWeek) { bestWeek = w; best = key; }
-}
-}
-return best ? { week: bestWeek, rows: sections[best] } : null;
+  let best = null, bestWeek = -1;
+  for (const key of Object.keys(sections)) {
+    const m = key.match(/^Week (\d+) Picks$/i);
+    if (m) {
+      const w = Number(m[1]);
+      if (w > bestWeek) { bestWeek = w; best = key; }
+    }
+  }
+  return best ? { week: bestWeek, rows: sections[best] } : null;
 }
 
 function renderPicksGrid(picksInfo) {
-if (!picksInfo) return '';
-const { week, rows } = picksInfo;
-if (!rows || !rows.length) return '';
-const cols = Object.keys(rows[0]).filter(k => k !== 'Name');
-const actualRow = rows.find(r => r['Name'].toUpperCase() === 'ACTUAL RESULT');
-const people = rows.filter(r => r['Name'].toUpperCase() !== 'ACTUAL RESULT');
+  if (!picksInfo) return '';
+  const { week, rows } = picksInfo;
+  if (!rows || !rows.length) return '';
+  const cols = Object.keys(rows[0]).filter(k => k !== 'Name');
+  const actualRow = rows.find(r => r['Name'].toUpperCase() === 'ACTUAL RESULT');
+  const people = rows.filter(r => r['Name'].toUpperCase() !== 'ACTUAL RESULT');
 
-const headerCells = cols.map(c => `<th>${esc(c)}</th>`).join('');
-const actualCells = actualRow ? cols.map(c => `<td class="pick-cell actual">${esc(actualRow[c])}</td>`).join('') : '';
-const bodyRows = people.map(r => {
-const cells = cols.map(c => {
-const val = r[c] || '';
-let cls = 'pick-cell';
-if (actualRow && c !== 'TB Guess') {
-cls += val === actualRow[c] ? ' correct' : ' wrong';
-}
-return `<td class="${cls}">${esc(val)}</td>`;
-}).join('');
-return `<tr><td class="name-cell">${esc(r['Name'])}</td>${cells}</tr>`;
-}).join('');
+  const headerCells = cols.map(c => `<th>${esc(c)}</th>`).join('');
+  const actualCells = actualRow ? cols.map(c => `<td class="pick-cell actual">${esc(actualRow[c])}</td>`).join('') : '';
+  const bodyRows = people.map(r => {
+    const cells = cols.map(c => {
+      const val = r[c] || '';
+      let cls = 'pick-cell';
+      if (actualRow && c !== 'TB Guess') {
+        cls += val === actualRow[c] ? ' correct' : ' wrong';
+      }
+      return `<td class="${cls}">${esc(val)}</td>`;
+    }).join('');
+    return `<tr><td class="name-cell">${esc(r['Name'])}</td>${cells}</tr>`;
+  }).join('');
 
-return `
-<div class="card">
-<div class="week-header">
-<h2 style="margin:0;">Everyone's Picks — Week ${week}</h2>
-<span class="tag">Green = correct</span>
-</div>
-<div class="scroll-hint">← swipe to see all games →</div>
-<div class="grid-scroll">
-<table>
-<thead><tr><th>Name</th>${headerCells}</tr></thead>
-<tbody>
-${actualRow ? `<tr class="actual-row"><td>Actual Result</td>${actualCells}</tr>` : ''}
-${bodyRows}
-</tbody>
-</table>
-</div>
-</div>`;
+  return `
+  <div class="card">
+    <div class="week-header">
+      <h2 style="margin:0;">Everyone's Picks — Week ${week}</h2>
+      <span class="tag">Green = correct</span>
+    </div>
+    <div class="scroll-hint">← swipe to see all games →</div>
+    <div class="grid-scroll">
+      <table>
+        <thead><tr><th>Name</th>${headerCells}</tr></thead>
+        <tbody>
+          ${actualRow ? `<tr class="actual-row"><td>Actual Result</td>${actualCells}</tr>` : ''}
+          ${bodyRows}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
 }
 
 function renderLeaderboard() {
-const el = document.getElementById('content');
-try {
-const SECTIONS = parseSections(TRACKER_TEXT);
-const weekly = renderWeekly(SECTIONS['Weekly Results']);
-const standings = renderStandings(SECTIONS['Season Standings']);
-const picksInfo = findLatestPicksSection(SECTIONS);
+  const el = document.getElementById('content');
+  try {
+    const SECTIONS = parseSections(TRACKER_TEXT);
+    const weekly = renderWeekly(SECTIONS['Weekly Results']);
+    const standings = renderStandings(SECTIONS['Season Standings']);
+    const picksInfo = findLatestPicksSection(SECTIONS);
 
-el.innerHTML = `
-<div class="card">
-<div class="week-header"><h2 style="margin:0;">Season Standings</h2></div>
-${standings}
-</div>
-<div class="card">
-<div class="week-header">
-<h2 style="margin:0;">${weekly.week !== null ? `Week ${weekly.week} Results` : 'Weekly Results'}</h2>
-${weekly.week !== null ? `<span class="tag">Most recent week</span>` : ''}
-</div>
-${weekly.html}
-</div>
-${renderPicksGrid(picksInfo)}
-`;
-document.getElementById('footer-note').textContent =
-'Standings/results snapshot from ' + new Date(SNAPSHOT_TAKEN_AT).toLocaleString() + ' — ask Devon to refresh for updated results. (Picks above are live.)';
-} catch (err) {
-el.innerHTML = `<div class="error">Couldn't render the leaderboard snapshot.\n\n${esc(err.message || err)}</div>`;
-}
+    el.innerHTML = `
+      <div class="card">
+        <div class="week-header"><h2 style="margin:0;">Season Standings</h2></div>
+        ${standings}
+      </div>
+      <div class="card">
+        <div class="week-header">
+          <h2 style="margin:0;">${weekly.week !== null ? `Week ${weekly.week} Results` : 'Weekly Results'}</h2>
+          ${weekly.week !== null ? `<span class="tag">Most recent week</span>` : ''}
+        </div>
+        ${weekly.html}
+      </div>
+      ${renderPicksGrid(picksInfo)}
+    `;
+    document.getElementById('footer-note').textContent =
+      'Standings/results snapshot from ' + new Date(SNAPSHOT_TAKEN_AT).toLocaleString() + ' — ask Devon to refresh for updated results. (Picks above are live.)';
+  } catch (err) {
+    el.innerHTML = `<div class="error">Couldn't render the leaderboard snapshot.\n\n${esc(err.message || err)}</div>`;
+  }
 }
 
 // ---------- Make Your Picks — posts straight to the linked Google Form ----------
@@ -536,27 +536,27 @@ const CURRENT_WEEK = 5;
 // match Game 1's kickoff time (in UTC). Thu 10/8/2026 8:15 PM ET (EDT, UTC-4) = below.
 const PICKS_LOCK_AT = "2026-10-09T00:15:00Z";
 function isPicksLocked() {
-return Date.now() >= new Date(PICKS_LOCK_AT).getTime();
+  return Date.now() >= new Date(PICKS_LOCK_AT).getTime();
 }
 const FORM_ACTION_URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSftFvuBV-_26HckQJNyZURh_PsuQ_9mnjmCd0l2vnENtiSKlw/formResponse";
 const NAME_ENTRY = "entry.1042254620";
 const TIEBREAKER_ENTRY = "entry.863364656";
 const GAMES = [
-{ matchup: "Tampa Bay Buccaneers @ Dallas Cowboys", kickoff: "Thu 10/8 8:15 PM ET (Prime Video)", away: "Tampa Bay Buccaneers", home: "Dallas Cowboys", entry: "entry.1430673861" },
-{ matchup: "Philadelphia Eagles @ Jacksonville Jaguars", kickoff: "Sun 10/11 9:30 AM ET (NFL London Games)", away: "Philadelphia Eagles", home: "Jacksonville Jaguars", entry: "entry.2108949720" },
-{ matchup: "Chicago Bears @ Green Bay Packers", kickoff: "Sun 10/11 1:00 PM ET (FOX)", away: "Chicago Bears", home: "Green Bay Packers", entry: "entry.1832158450" },
-{ matchup: "Houston Texans @ Tennessee Titans", kickoff: "Sun 10/11 1:00 PM ET (CBS)", away: "Houston Texans", home: "Tennessee Titans", entry: "entry.326102835" },
-{ matchup: "Cincinnati Bengals @ Miami Dolphins", kickoff: "Sun 10/11 1:00 PM ET (FOX)", away: "Cincinnati Bengals", home: "Miami Dolphins", entry: "entry.1169487905" },
-{ matchup: "Las Vegas Raiders @ New England Patriots", kickoff: "Sun 10/11 1:00 PM ET (CBS)", away: "Las Vegas Raiders", home: "New England Patriots", entry: "entry.441562585" },
-{ matchup: "Minnesota Vikings @ New Orleans Saints", kickoff: "Sun 10/11 1:00 PM ET (FOX)", away: "Minnesota Vikings", home: "New Orleans Saints", entry: "entry.145057882" },
-{ matchup: "Cleveland Browns @ New York Jets", kickoff: "Sun 10/11 1:00 PM ET (CBS)", away: "Cleveland Browns", home: "New York Jets", entry: "entry.1796722167" },
-{ matchup: "Indianapolis Colts @ Pittsburgh Steelers", kickoff: "Sun 10/11 1:00 PM ET (CBS)", away: "Indianapolis Colts", home: "Pittsburgh Steelers", entry: "entry.53406833" },
-{ matchup: "New York Giants @ Washington Commanders", kickoff: "Sun 10/11 1:00 PM ET (FOX)", away: "New York Giants", home: "Washington Commanders", entry: "entry.217602783" },
-{ matchup: "Denver Broncos @ Los Angeles Chargers", kickoff: "Sun 10/11 4:05 PM ET (CBS)", away: "Denver Broncos", home: "Los Angeles Chargers", entry: "entry.2030992036" },
-{ matchup: "Detroit Lions @ Arizona Cardinals", kickoff: "Sun 10/11 4:25 PM ET (FOX)", away: "Detroit Lions", home: "Arizona Cardinals", entry: "entry.819301550" },
-{ matchup: "San Francisco 49ers @ Seattle Seahawks", kickoff: "Sun 10/11 4:25 PM ET (FOX)", away: "San Francisco 49ers", home: "Seattle Seahawks", entry: "entry.1153349899" },
-{ matchup: "Baltimore Ravens @ Atlanta Falcons", kickoff: "Sun 10/11 8:20 PM ET (NBC)", away: "Baltimore Ravens", home: "Atlanta Falcons", entry: "entry.143664362" },
-{ matchup: "Buffalo Bills @ Los Angeles Rams", kickoff: "Mon 10/12 8:15 PM ET (ESPN)", away: "Buffalo Bills", home: "Los Angeles Rams", entry: "entry.2136714502", tiebreaker: true }
+  { matchup: "Tampa Bay Buccaneers @ Dallas Cowboys", kickoff: "Thu 10/8 8:15 PM ET (Prime Video)", away: "Tampa Bay Buccaneers", home: "Dallas Cowboys", entry: "entry.1430673861" },
+  { matchup: "Philadelphia Eagles @ Jacksonville Jaguars", kickoff: "Sun 10/11 9:30 AM ET (NFL London Games)", away: "Philadelphia Eagles", home: "Jacksonville Jaguars", entry: "entry.2108949720" },
+  { matchup: "Chicago Bears @ Green Bay Packers", kickoff: "Sun 10/11 1:00 PM ET (FOX)", away: "Chicago Bears", home: "Green Bay Packers", entry: "entry.1832158450" },
+  { matchup: "Houston Texans @ Tennessee Titans", kickoff: "Sun 10/11 1:00 PM ET (CBS)", away: "Houston Texans", home: "Tennessee Titans", entry: "entry.326102835" },
+  { matchup: "Cincinnati Bengals @ Miami Dolphins", kickoff: "Sun 10/11 1:00 PM ET (FOX)", away: "Cincinnati Bengals", home: "Miami Dolphins", entry: "entry.1169487905" },
+  { matchup: "Las Vegas Raiders @ New England Patriots", kickoff: "Sun 10/11 1:00 PM ET (CBS)", away: "Las Vegas Raiders", home: "New England Patriots", entry: "entry.441562585" },
+  { matchup: "Minnesota Vikings @ New Orleans Saints", kickoff: "Sun 10/11 1:00 PM ET (FOX)", away: "Minnesota Vikings", home: "New Orleans Saints", entry: "entry.145057882" },
+  { matchup: "Cleveland Browns @ New York Jets", kickoff: "Sun 10/11 1:00 PM ET (CBS)", away: "Cleveland Browns", home: "New York Jets", entry: "entry.1796722167" },
+  { matchup: "Indianapolis Colts @ Pittsburgh Steelers", kickoff: "Sun 10/11 1:00 PM ET (CBS)", away: "Indianapolis Colts", home: "Pittsburgh Steelers", entry: "entry.53406833" },
+  { matchup: "New York Giants @ Washington Commanders", kickoff: "Sun 10/11 1:00 PM ET (FOX)", away: "New York Giants", home: "Washington Commanders", entry: "entry.217602783" },
+  { matchup: "Denver Broncos @ Los Angeles Chargers", kickoff: "Sun 10/11 4:05 PM ET (CBS)", away: "Denver Broncos", home: "Los Angeles Chargers", entry: "entry.2030992036" },
+  { matchup: "Detroit Lions @ Arizona Cardinals", kickoff: "Sun 10/11 4:25 PM ET (FOX)", away: "Detroit Lions", home: "Arizona Cardinals", entry: "entry.819301550" },
+  { matchup: "San Francisco 49ers @ Seattle Seahawks", kickoff: "Sun 10/11 4:25 PM ET (FOX)", away: "San Francisco 49ers", home: "Seattle Seahawks", entry: "entry.1153349899" },
+  { matchup: "Baltimore Ravens @ Atlanta Falcons", kickoff: "Sun 10/11 8:20 PM ET (NBC)", away: "Baltimore Ravens", home: "Atlanta Falcons", entry: "entry.143664362" },
+  { matchup: "Buffalo Bills @ Los Angeles Rams", kickoff: "Mon 10/12 8:15 PM ET (ESPN)", away: "Buffalo Bills", home: "Los Angeles Rams", entry: "entry.2136714502", tiebreaker: true }
 ];
 
 // ---------- Live "Week N Picks" — reads straight from the Form's response sheet ----------
@@ -574,119 +574,151 @@ const PICKS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS_jjqK4C
 // index "2 + gameIndex" lines up with GAMES[gameIndex]; always resolve the column for
 // each game by matching the header text against that game's away/home team names.
 function buildGameColumnMap(headerRow) {
-const byGame = GAMES.map(g => headerRow.findIndex(h => h && h.includes(g.away) && h.includes(g.home)));
-const used = new Set(byGame.filter(i => i >= 0));
-let tbCol = -1;
-for (let c = 2; c < headerRow.length; c++) {
-if (!used.has(c)) { tbCol = c; break; }
-}
-return { byGame, tbCol };
+  const byGame = GAMES.map(g => headerRow.findIndex(h => h && h.includes(g.away) && h.includes(g.home)));
+  const used = new Set(byGame.filter(i => i >= 0));
+  let tbCol = -1;
+  for (let c = 2; c < headerRow.length; c++) {
+    if (!used.has(c)) { tbCol = c; break; }
+  }
+  return { byGame, tbCol };
 }
 
 function parseCSV(text) {
-const rows = [];
-let row = [], field = '', inQuotes = false;
-for (let i = 0; i < text.length; i++) {
-const c = text[i];
-if (inQuotes) {
-if (c === '"') {
-if (text[i + 1] === '"') { field += '"'; i++; }
-else { inQuotes = false; }
-} else field += c;
-} else {
-if (c === '"') inQuotes = true;
-else if (c === ',') { row.push(field); field = ''; }
-else if (c === '\r') { /* skip */ }
-else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
-else field += c;
+  const rows = [];
+  let row = [], field = '', inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQuotes) {
+      if (c === '"') {
+        if (text[i + 1] === '"') { field += '"'; i++; }
+        else { inQuotes = false; }
+      } else field += c;
+    } else {
+      if (c === '"') inQuotes = true;
+      else if (c === ',') { row.push(field); field = ''; }
+      else if (c === '\r') { /* skip */ }
+      else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+      else field += c;
+    }
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  return rows.filter(r => !(r.length === 1 && r[0] === ''));
 }
+
+// ---------- Timestamp helpers — used to tell "this week's" submissions apart from ----------
+// leftover rows from a previous week. The same Google Form/response sheet is reused
+// every week (its question text/options get edited in place, not recreated), so the
+// sheet's history includes every prior week's rows too. A person who doesn't resubmit
+// for the current week will still have an old row sitting there under the current
+// week's column headers — these helpers make sure that old row is never mistaken for
+// a current-week submission.
+function parseSheetTimestamp(raw) {
+  if (!raw) return null;
+  const d = new Date(raw);
+  return isNaN(d.getTime()) ? null : d;
 }
-if (field.length || row.length) { row.push(field); rows.push(row); }
-return rows.filter(r => !(r.length === 1 && r[0] === ''));
+
+// A row counts as "this week's" only if its timestamp is on/after this week's picks
+// opening (SNAPSHOT_TAKEN_AT is set to that moment every time the weekly rollover runs).
+function isThisWeeksRow(row) {
+  const ts = parseSheetTimestamp(row[0]);
+  if (!ts) return false;
+  return ts.getTime() >= new Date(SNAPSHOT_TAKEN_AT).getTime();
+}
+
+function formatPickedAt(raw) {
+  const d = parseSheetTimestamp(raw);
+  if (!d) return '—';
+  return d.toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
 }
 
 function renderLivePicksTable(rows) {
-if (!rows || rows.length < 2) {
-return '<p class="muted">No picks submitted yet for Week ' + CURRENT_WEEK + '.</p>';
-}
-const header = rows[0];
-const { byGame, tbCol } = buildGameColumnMap(header);
-const dataRows = rows.slice(1);
-// Keep only the most recent submission per name (rows are in submission order,
-// so the last row for a given name wins).
-const byName = new Map();
-dataRows.forEach(r => {
-const name = (r[1] || '').trim();
-if (name) byName.set(name, r);
-});
+  if (!rows || rows.length < 2) {
+    return '<p class="muted">No one has picked Week ' + CURRENT_WEEK + ' yet.</p>';
+  }
+  const header = rows[0];
+  const { byGame, tbCol } = buildGameColumnMap(header);
+  const dataRows = rows.slice(1);
+  // Keep only the most recent submission per name (rows are in submission order,
+  // so the last row for a given name wins), then drop anyone whose latest row is
+  // actually a leftover from a previous week (see note above) — this view should
+  // only ever show people who have picked THIS week, not everyone who ever has.
+  const byName = new Map();
+  dataRows.forEach(r => {
+    const name = (r[1] || '').trim();
+    if (name) byName.set(name, r);
+  });
 
-const finalRows = Array.from(byName.values());
-if (!finalRows.length) {
-return '<p class="muted">No picks submitted yet for Week ' + CURRENT_WEEK + '.</p>';
-}
+  const finalRows = Array.from(byName.values()).filter(isThisWeeksRow);
+  if (!finalRows.length) {
+    return '<p class="muted">No one has picked Week ' + CURRENT_WEEK + ' yet.</p>';
+  }
 
-const headerCells = GAMES.map(g => `<th>${esc(g.matchup)}</th>`).join('');
-const bodyRows = finalRows.map(r => {
-const cells = GAMES.map((g, i) => `<td class="pick-cell">${esc(byGame[i] >= 0 ? (r[byGame[i]] || '') : '')}</td>`).join('');
-const tb = tbCol >= 0 ? (r[tbCol] || '') : '';
-return `<tr><td class="name-cell">${esc(r[1])}</td>${cells}<td class="num">${esc(tb)}</td></tr>`;
-}).join('');
+  const headerCells = GAMES.map(g => `<th>${esc(g.matchup)}</th>`).join('');
+  const bodyRows = finalRows.map(r => {
+    const cells = GAMES.map((g, i) => `<td class="pick-cell">${esc(byGame[i] >= 0 ? (r[byGame[i]] || '') : '')}</td>`).join('');
+    const tb = tbCol >= 0 ? (r[tbCol] || '') : '';
+    return `<tr><td class="name-cell">${esc(r[1])}</td>${cells}<td class="num">${esc(tb)}</td></tr>`;
+  }).join('');
 
-return `
-<div class="scroll-hint">← swipe to see all games →</div>
-<div class="grid-scroll">
-<table>
-<thead><tr><th>Name</th>${headerCells}<th>TB Guess</th></tr></thead>
-<tbody>${bodyRows}</tbody>
-</table>
-</div>`;
+  return `
+  <div class="scroll-hint">← swipe to see all games →</div>
+  <div class="grid-scroll">
+    <table>
+      <thead><tr><th>Name</th>${headerCells}<th>TB Guess</th></tr></thead>
+      <tbody>${bodyRows}</tbody>
+    </table>
+  </div>`;
 }
 
 function renderLivePicksShell() {
-const el = document.getElementById('live-picks');
-if (!el) return;
-el.innerHTML = `
-<div class="card">
-<div class="week-header">
-<h2 style="margin:0;">Week ${CURRENT_WEEK} Picks — Live</h2>
-<span class="tag" id="live-picks-tag">Loading…</span>
-</div>
-<div id="live-picks-content"><p class="muted">Loading…</p></div>
-</div>`;
+  const el = document.getElementById('live-picks');
+  if (!el) return;
+  el.innerHTML = `
+    <div class="card">
+      <div class="week-header">
+        <h2 style="margin:0;">Week ${CURRENT_WEEK} Picks — Live</h2>
+        <span class="tag" id="live-picks-tag">Loading…</span>
+      </div>
+      <div id="live-picks-content"><p class="muted">Loading…</p></div>
+    </div>`;
 }
 
 async function loadLivePicks() {
-if (!isPicksLocked()) {
-const el = document.getElementById('live-picks');
-if (el) {
-el.innerHTML = `
-<div class="card">
-<div class="week-header"><h2 style="margin:0;">Week ${CURRENT_WEEK} Picks — Live</h2></div>
-<p class="muted">Picks are hidden until the first game kicks off, so nobody can see anyone else's picks early. Check back once Week ${CURRENT_WEEK} starts!</p>
-</div>`;
-}
-return;
-}
-renderLivePicksShell();
-const contentEl = document.getElementById('live-picks-content');
-const tagEl = document.getElementById('live-picks-tag');
-try {
-const res = await fetch(PICKS_CSV_URL + '&nocache=' + Date.now(), { cache: 'no-store' });
-if (!res.ok) throw new Error('HTTP ' + res.status);
-const text = await res.text();
-const rows = parseCSV(text);
-contentEl.innerHTML = renderLivePicksTable(rows);
+  if (!isPicksLocked()) {
+    const el = document.getElementById('live-picks');
+    if (el) {
+      el.innerHTML = `
+        <div class="card">
+          <div class="week-header"><h2 style="margin:0;">Week ${CURRENT_WEEK} Picks — Live</h2></div>
+          <p class="muted">Picks are hidden until the first game kicks off, so nobody can see anyone else's picks early. Check back once Week ${CURRENT_WEEK} starts!</p>
+        </div>`;
+    }
+    return;
+  }
+  renderLivePicksShell();
+  const contentEl = document.getElementById('live-picks-content');
+  const tagEl = document.getElementById('live-picks-tag');
+  try {
+    const res = await fetch(PICKS_CSV_URL + '&nocache=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const text = await res.text();
+    const rows = parseCSV(text);
+    contentEl.innerHTML = renderLivePicksTable(rows);
 
-// Count unique named submitters only — blank filler rows in the sheet shouldn't inflate this.
-const names = new Set((rows.slice(1) || []).map(r => (r[1] || '').trim()).filter(Boolean));
-const count = names.size;
-tagEl.textContent = count === 0 ? 'No picks yet' : (count + (count === 1 ? ' pick set in' : ' picks in'));
-} catch (err) {
-// Claude's own artifact sandbox blocks this kind of outbound fetch, so this view
-// only works on the public GitHub Pages copy. Point there instead of erroring.
-tagEl.textContent = 'Unavailable here';
-contentEl.innerHTML = `<p class="muted">Live picks aren't available in this preview. See them on the public page: <a href="https://dbacskay.github.io/NFL-Pick-ems/" target="_blank" rel="noopener" style="color:var(--accent);">dbacskay.github.io/NFL-Pick-ems</a></p>`;
-}
+    // Count only this week's actual submitters — a stale leftover row from a prior
+    // week (see the timestamp-helpers note above) should never inflate this count.
+    const dataRows = rows.slice(1) || [];
+    const byName = new Map();
+    dataRows.forEach(r => { const name = (r[1] || '').trim(); if (name) byName.set(name, r); });
+    const count = Array.from(byName.values()).filter(isThisWeeksRow).length;
+    tagEl.textContent = count === 0 ? 'No one has picked yet' : (count + (count === 1 ? ' person has picked' : ' people have picked'));
+  } catch (err) {
+    // Claude's own artifact sandbox blocks this kind of outbound fetch, so this view
+    // only works on the public GitHub Pages copy. Point there instead of erroring.
+    tagEl.textContent = 'Unavailable here';
+    contentEl.innerHTML = `<p class="muted">Live picks aren't available in this preview. See them on the public page: <a href="https://dbacskay.github.io/NFL-Pick-ems/" target="_blank" rel="noopener" style="color:var(--accent);">dbacskay.github.io/NFL-Pick-ems</a></p>`;
+  }
 }
 
 // ---------- Live standings — grades finished games straight from ESPN's public scoreboard ----------
@@ -694,249 +726,260 @@ contentEl.innerHTML = `<p class="muted">Live picks aren't available in this prev
 // have actually finished (status "post") — in-progress games don't flip anyone's count.
 const SEASON_YEAR = 2026;
 function espnScoreboardUrl() {
-return `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=${CURRENT_WEEK}&seasontype=2&dates=${SEASON_YEAR}`;
+  return `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=${CURRENT_WEEK}&seasontype=2&dates=${SEASON_YEAR}`;
 }
 
 function renderLiveStandingsShell() {
-const el = document.getElementById('live-standings');
-if (!el) return;
-el.innerHTML = `
-<div class="card">
-<div class="week-header">
-<h2 style="margin:0;">Week ${CURRENT_WEEK} — Live Standings</h2>
-<span class="tag" id="live-standings-tag">Loading…</span>
-</div>
-<div id="live-standings-content"><p class="muted">Loading…</p></div>
-</div>`;
+  const el = document.getElementById('live-standings');
+  if (!el) return;
+  el.innerHTML = `
+    <div class="card">
+      <div class="week-header">
+        <h2 style="margin:0;">Week ${CURRENT_WEEK} — Live Standings</h2>
+        <span class="tag" id="live-standings-tag">Loading…</span>
+      </div>
+      <div id="live-standings-content"><p class="muted">Loading…</p></div>
+    </div>`;
 }
 
 async function loadLiveGrades() {
-renderLiveStandingsShell();
-const contentEl = document.getElementById('live-standings-content');
-const tagEl = document.getElementById('live-standings-tag');
-try {
-const [scoreRes, picksRes] = await Promise.all([
-fetch(espnScoreboardUrl() + '&_=' + Date.now(), { cache: 'no-store' }),
-fetch(PICKS_CSV_URL + '&nocache=' + Date.now(), { cache: 'no-store' })
-]);
-if (!scoreRes.ok) throw new Error('ESPN HTTP ' + scoreRes.status);
-if (!picksRes.ok) throw new Error('Picks HTTP ' + picksRes.status);
-const scoreData = await scoreRes.json();
-const picksText = await picksRes.text();
+  renderLiveStandingsShell();
+  const contentEl = document.getElementById('live-standings-content');
+  const tagEl = document.getElementById('live-standings-tag');
+  try {
+    const [scoreRes, picksRes] = await Promise.all([
+      fetch(espnScoreboardUrl() + '&_=' + Date.now(), { cache: 'no-store' }),
+      fetch(PICKS_CSV_URL + '&nocache=' + Date.now(), { cache: 'no-store' })
+    ]);
+    if (!scoreRes.ok) throw new Error('ESPN HTTP ' + scoreRes.status);
+    if (!picksRes.ok) throw new Error('Picks HTTP ' + picksRes.status);
+    const scoreData = await scoreRes.json();
+    const picksText = await picksRes.text();
 
-const events = scoreData.events || [];
-const results = GAMES.map(g => {
-const ev = events.find(e => {
-const comps = (e.competitions && e.competitions[0] && e.competitions[0].competitors) || [];
-const names = comps.map(c => c.team && c.team.displayName);
-return names.includes(g.away) && names.includes(g.home);
-});
-if (!ev) return { ...g, decided: false, winner: null, actualTotal: null };
-const comp = ev.competitions[0];
-const state = comp.status && comp.status.type && comp.status.type.state; // 'pre' | 'in' | 'post'
-const comps = comp.competitors || [];
-const scores = {};
-comps.forEach(c => { scores[c.team.displayName] = Number(c.score); });
-const decided = state === 'post';
-let winner = null;
-if (decided) {
-winner = scores[g.home] > scores[g.away] ? g.home : (scores[g.away] > scores[g.home] ? g.away : 'TIE');
-}
-const actualTotal = (scores[g.home] != null && scores[g.away] != null) ? (scores[g.home] + scores[g.away]) : null;
-return { ...g, decided, winner, actualTotal, state };
-});
+    const events = scoreData.events || [];
+    const results = GAMES.map(g => {
+      const ev = events.find(e => {
+        const comps = (e.competitions && e.competitions[0] && e.competitions[0].competitors) || [];
+        const names = comps.map(c => c.team && c.team.displayName);
+        return names.includes(g.away) && names.includes(g.home);
+      });
+      if (!ev) return { ...g, decided: false, winner: null, actualTotal: null };
+      const comp = ev.competitions[0];
+      const state = comp.status && comp.status.type && comp.status.type.state; // 'pre' | 'in' | 'post'
+      const comps = comp.competitors || [];
+      const scores = {};
+      comps.forEach(c => { scores[c.team.displayName] = Number(c.score); });
+      const decided = state === 'post';
+      let winner = null;
+      if (decided) {
+        winner = scores[g.home] > scores[g.away] ? g.home : (scores[g.away] > scores[g.home] ? g.away : 'TIE');
+      }
+      const actualTotal = (scores[g.home] != null && scores[g.away] != null) ? (scores[g.home] + scores[g.away]) : null;
+      return { ...g, decided, winner, actualTotal, state };
+    });
 
-const decidedCount = results.filter(r => r.decided).length;
-const tiebreakerResult = results.find(r => r.tiebreaker);
+    const decidedCount = results.filter(r => r.decided).length;
+    const tiebreakerResult = results.find(r => r.tiebreaker);
 
-const rows = parseCSV(picksText);
-const header = rows[0] || [];
-const { byGame, tbCol } = buildGameColumnMap(header);
-const dataRows = rows.slice(1);
-const byName = new Map();
-dataRows.forEach(r => { const name = (r[1] || '').trim(); if (name) byName.set(name, r); });
+    const rows = parseCSV(picksText);
+    const header = rows[0] || [];
+    const { byGame, tbCol } = buildGameColumnMap(header);
+    const dataRows = rows.slice(1);
+    const byName = new Map();
+    dataRows.forEach(r => { const name = (r[1] || '').trim(); if (name) byName.set(name, r); });
 
-const standings = Array.from(byName.values()).map(r => {
-let correct = 0;
-GAMES.forEach((g, i) => {
-const res = results[i];
-const col = byGame[i];
-if (res.decided && res.winner !== 'TIE' && col >= 0 && r[col] === res.winner) correct++;
-});
-const tbGuess = tbCol >= 0 ? Number(r[tbCol]) : NaN;
-const diff = (tiebreakerResult && tiebreakerResult.decided && tiebreakerResult.actualTotal != null && !isNaN(tbGuess))
-? Math.abs(tbGuess - tiebreakerResult.actualTotal) : null;
-return { name: (r[1] || '').trim(), correct, diff };
-});
+    // Only people who've actually picked THIS week belong in the live standings — a
+    // stale leftover row from a previous week (see the timestamp-helpers note above)
+    // would otherwise get silently graded as 0-for-the-week against this week's
+    // mismatched matchups, which is wrong. Filtering here means "everyone" never
+    // shows up — only the people who have actually picked show up, each marked with
+    // when they picked.
+    const standings = Array.from(byName.values())
+      .filter(isThisWeeksRow)
+      .map(r => {
+        let correct = 0;
+        GAMES.forEach((g, i) => {
+          const res = results[i];
+          const col = byGame[i];
+          if (res.decided && res.winner !== 'TIE' && col >= 0 && r[col] === res.winner) correct++;
+        });
+        const tbGuess = tbCol >= 0 ? Number(r[tbCol]) : NaN;
+        const diff = (tiebreakerResult && tiebreakerResult.decided && tiebreakerResult.actualTotal != null && !isNaN(tbGuess))
+          ? Math.abs(tbGuess - tiebreakerResult.actualTotal) : null;
+        return { name: (r[1] || '').trim(), correct, diff, submittedAt: r[0] || '' };
+      });
 
-standings.sort((a, b) => {
-if (b.correct !== a.correct) return b.correct - a.correct;
-if (a.diff == null && b.diff == null) return 0;
-if (a.diff == null) return 1;
-if (b.diff == null) return -1;
-return a.diff - b.diff;
-});
+    // Ranking still uses Correct first, then the tiebreaker diff once it's known
+    // (that's the real tiebreak rule) — only the DISPLAYED column changes below,
+    // since showing "TB Diff" before the tiebreaker game is final is meaningless.
+    standings.sort((a, b) => {
+      if (b.correct !== a.correct) return b.correct - a.correct;
+      if (a.diff == null && b.diff == null) return 0;
+      if (a.diff == null) return 1;
+      if (b.diff == null) return -1;
+      return a.diff - b.diff;
+    });
 
-if (!standings.length) {
-contentEl.innerHTML = '<p class="muted">No picks submitted yet for Week ' + CURRENT_WEEK + '.</p>';
-} else {
-const body = standings.map((s, idx) => `
-<tr>
-<td class="rank-cell">${idx + 1}</td>
-<td class="name-cell">${esc(s.name)}</td>
-<td class="num">${s.correct}/${decidedCount}</td>
-<td class="num">${s.diff == null ? '—' : esc(s.diff)}</td>
-</tr>`).join('');
-contentEl.innerHTML = `<table>
-<thead><tr><th>Rank</th><th>Name</th><th class="num">Correct</th><th class="num">TB Diff</th></tr></thead>
-<tbody>${body}</tbody>
-</table>`;
-}
-tagEl.textContent = decidedCount + '/' + GAMES.length + ' games final';
-} catch (err) {
-tagEl.textContent = 'Unavailable';
-contentEl.innerHTML = `<p class="muted">Couldn't load live standings right now. Try reloading the page.</p>`;
-}
+    if (!standings.length) {
+      contentEl.innerHTML = '<p class="muted">No one has picked Week ' + CURRENT_WEEK + ' yet.</p>';
+    } else {
+      const body = standings.map((s, idx) => `
+        <tr>
+          <td class="rank-cell">${idx + 1}</td>
+          <td class="name-cell">${esc(s.name)}</td>
+          <td class="num">${s.correct}/${decidedCount}</td>
+          <td>${esc(formatPickedAt(s.submittedAt))}</td>
+        </tr>`).join('');
+      contentEl.innerHTML = `<table>
+        <thead><tr><th>Rank</th><th>Name</th><th class="num">Correct</th><th>Picked</th></tr></thead>
+        <tbody>${body}</tbody>
+      </table>`;
+    }
+    tagEl.textContent = standings.length + (standings.length === 1 ? ' person picked' : ' people picked') + ' · ' + decidedCount + '/' + GAMES.length + ' games final';
+  } catch (err) {
+    tagEl.textContent = 'Unavailable';
+    contentEl.innerHTML = `<p class="muted">Couldn't load live standings right now. Try reloading the page.</p>`;
+  }
 }
 
 function renderPicksTab() {
-const el = document.getElementById('tab-picks');
+  const el = document.getElementById('tab-picks');
 
-if (isPicksLocked()) {
-el.innerHTML = `
-<div class="card">
-<div class="week-header"><h2 style="margin:0;">Week ${CURRENT_WEEK} Picks</h2></div>
-<p class="muted lock-msg">Picks for Week ${CURRENT_WEEK} are locked — the first game has already kicked off. Check back next week!</p>
-</div>`;
-return;
-}
+  if (isPicksLocked()) {
+    el.innerHTML = `
+      <div class="card">
+        <div class="week-header"><h2 style="margin:0;">Week ${CURRENT_WEEK} Picks</h2></div>
+        <p class="muted lock-msg">Picks for Week ${CURRENT_WEEK} are locked — the first game has already kicked off. Check back next week!</p>
+      </div>`;
+    return;
+  }
 
-const gameBlocks = GAMES.map((g, idx) => `
-<div class="game-block">
-<div class="game-title">${esc(g.matchup)}${g.tiebreaker ? '<span class="tb-badge">Tiebreaker Game</span>' : ''}</div>
-<div class="game-time">${esc(g.kickoff)}</div>
-<div class="choice-row" data-game="${idx}">
-<label class="choice-label"><input type="radio" name="game${idx}" value="${esc(g.away)}">${esc(g.away)}</label>
-<label class="choice-label"><input type="radio" name="game${idx}" value="${esc(g.home)}">${esc(g.home)}</label>
-</div>
-${g.tiebreaker ? `<div class="field-block" style="margin-top:10px;">
-<label class="field-label">Predict the combined total score (both teams) of this game</label>
-<input type="number" id="tbGuess" placeholder="e.g. 45">
-</div>` : ''}
-</div>`).join('');
+  const gameBlocks = GAMES.map((g, idx) => `
+    <div class="game-block">
+      <div class="game-title">${esc(g.matchup)}${g.tiebreaker ? '<span class="tb-badge">Tiebreaker Game</span>' : ''}</div>
+      <div class="game-time">${esc(g.kickoff)}</div>
+      <div class="choice-row" data-game="${idx}">
+        <label class="choice-label"><input type="radio" name="game${idx}" value="${esc(g.away)}">${esc(g.away)}</label>
+        <label class="choice-label"><input type="radio" name="game${idx}" value="${esc(g.home)}">${esc(g.home)}</label>
+      </div>
+      ${g.tiebreaker ? `<div class="field-block" style="margin-top:10px;">
+        <label class="field-label">Predict the combined total score (both teams) of this game</label>
+        <input type="number" id="tbGuess" placeholder="e.g. 45">
+      </div>` : ''}
+    </div>`).join('');
 
-el.innerHTML = `
-<div class="card">
-<div class="week-header"><h2 style="margin:0;">Week ${CURRENT_WEEK} Picks</h2></div>
-<div class="field-block">
-<label class="field-label">Your Name</label>
-<input type="text" id="yourName" placeholder="Enter your name">
-</div>
-${gameBlocks}
-<button class="cta-btn" id="submitBtn">Submit My Picks</button>
-<div class="submit-msg" id="submitMsg"></div>
-</div>
-`;
+  el.innerHTML = `
+    <div class="card">
+      <div class="week-header"><h2 style="margin:0;">Week ${CURRENT_WEEK} Picks</h2></div>
+      <div class="field-block">
+        <label class="field-label">Your Name</label>
+        <input type="text" id="yourName" placeholder="Enter your name">
+      </div>
+      ${gameBlocks}
+      <button class="cta-btn" id="submitBtn">Submit My Picks</button>
+      <div class="submit-msg" id="submitMsg"></div>
+    </div>
+  `;
 
-el.querySelectorAll('.choice-label').forEach(label => {
-label.addEventListener('click', () => {
-const row = label.closest('.choice-row');
-row.querySelectorAll('.choice-label').forEach(l => l.classList.remove('selected'));
-label.classList.add('selected');
-label.querySelector('input').checked = true;
-});
-});
+  el.querySelectorAll('.choice-label').forEach(label => {
+    label.addEventListener('click', () => {
+      const row = label.closest('.choice-row');
+      row.querySelectorAll('.choice-label').forEach(l => l.classList.remove('selected'));
+      label.classList.add('selected');
+      label.querySelector('input').checked = true;
+    });
+  });
 
-document.getElementById('submitBtn').addEventListener('click', submitPicks);
+  document.getElementById('submitBtn').addEventListener('click', submitPicks);
 }
 
 function submitPicks() {
-const btn = document.getElementById('submitBtn');
-const msg = document.getElementById('submitMsg');
+  const btn = document.getElementById('submitBtn');
+  const msg = document.getElementById('submitMsg');
 
-if (isPicksLocked()) {
-msg.className = 'submit-msg err';
-msg.textContent = `Picks for Week ${CURRENT_WEEK} just locked — the first game has kicked off.`;
-btn.disabled = true;
-btn.textContent = 'Locked';
-return;
-}
+  if (isPicksLocked()) {
+    msg.className = 'submit-msg err';
+    msg.textContent = `Picks for Week ${CURRENT_WEEK} just locked — the first game has kicked off.`;
+    btn.disabled = true;
+    btn.textContent = 'Locked';
+    return;
+  }
 
-const name = document.getElementById('yourName').value.trim();
+  const name = document.getElementById('yourName').value.trim();
 
-if (!name) { msg.className = 'submit-msg err'; msg.textContent = 'Please enter your name.'; return; }
+  if (!name) { msg.className = 'submit-msg err'; msg.textContent = 'Please enter your name.'; return; }
 
-const picks = [];
-for (let i = 0; i < GAMES.length; i++) {
-const checked = document.querySelector(`input[name="game${i}"]:checked`);
-if (!checked) {
-msg.className = 'submit-msg err';
-msg.textContent = `Please make a pick for: ${GAMES[i].matchup}`;
-return;
-}
-picks.push(checked.value);
-}
-const tbGuessEl = document.getElementById('tbGuess');
-const tbGuess = tbGuessEl ? tbGuessEl.value.trim() : '';
-if (!tbGuess || isNaN(Number(tbGuess))) {
-msg.className = 'submit-msg err';
-msg.textContent = 'Please enter a numeric tiebreaker guess.';
-return;
-}
+  const picks = [];
+  for (let i = 0; i < GAMES.length; i++) {
+    const checked = document.querySelector(`input[name="game${i}"]:checked`);
+    if (!checked) {
+      msg.className = 'submit-msg err';
+      msg.textContent = `Please make a pick for: ${GAMES[i].matchup}`;
+      return;
+    }
+    picks.push(checked.value);
+  }
+  const tbGuessEl = document.getElementById('tbGuess');
+  const tbGuess = tbGuessEl ? tbGuessEl.value.trim() : '';
+  if (!tbGuess || isNaN(Number(tbGuess))) {
+    msg.className = 'submit-msg err';
+    msg.textContent = 'Please enter a numeric tiebreaker guess.';
+    return;
+  }
 
-btn.disabled = true;
-btn.textContent = 'Submitting…';
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
 
-try {
-const iframeName = 'pickem_submit_' + Date.now();
-const iframe = document.createElement('iframe');
-iframe.name = iframeName;
-iframe.style.display = 'none';
-document.body.appendChild(iframe);
+  try {
+    const iframeName = 'pickem_submit_' + Date.now();
+    const iframe = document.createElement('iframe');
+    iframe.name = iframeName;
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
 
-const form = document.createElement('form');
-form.action = FORM_ACTION_URL;
-form.method = 'POST';
-form.target = iframeName;
-form.style.display = 'none';
+    const form = document.createElement('form');
+    form.action = FORM_ACTION_URL;
+    form.method = 'POST';
+    form.target = iframeName;
+    form.style.display = 'none';
 
-const addField = (fieldName, value) => {
-const input = document.createElement('input');
-input.type = 'hidden';
-input.name = fieldName;
-input.value = value;
-form.appendChild(input);
-};
+    const addField = (fieldName, value) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = fieldName;
+      input.value = value;
+      form.appendChild(input);
+    };
 
-addField(NAME_ENTRY, name);
-GAMES.forEach((g, i) => addField(g.entry, picks[i]));
-addField(TIEBREAKER_ENTRY, tbGuess);
+    addField(NAME_ENTRY, name);
+    GAMES.forEach((g, i) => addField(g.entry, picks[i]));
+    addField(TIEBREAKER_ENTRY, tbGuess);
 
-document.body.appendChild(form);
-form.submit();
+    document.body.appendChild(form);
+    form.submit();
 
-setTimeout(() => {
-msg.className = 'submit-msg ok';
-msg.textContent = `Thanks ${name}! Your picks for Week ${CURRENT_WEEK} are in.`;
-btn.textContent = 'Submitted ✓';
-document.body.removeChild(form);
-document.body.removeChild(iframe);
-}, 900);
-} catch (err) {
-msg.className = 'submit-msg err';
-msg.textContent = `Something went wrong submitting: ${err.message || err}`;
-btn.disabled = false;
-btn.textContent = 'Submit My Picks';
-}
+    setTimeout(() => {
+      msg.className = 'submit-msg ok';
+      msg.textContent = `Thanks ${name}! Your picks for Week ${CURRENT_WEEK} are in.`;
+      btn.textContent = 'Submitted ✓';
+      document.body.removeChild(form);
+      document.body.removeChild(iframe);
+    }, 900);
+  } catch (err) {
+    msg.className = 'submit-msg err';
+    msg.textContent = `Something went wrong submitting: ${err.message || err}`;
+    btn.disabled = false;
+    btn.textContent = 'Submit My Picks';
+  }
 }
 
 document.querySelectorAll('.tab-btn').forEach(btn => {
-btn.addEventListener('click', () => {
-document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-btn.classList.add('active');
-document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-});
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
 });
 
 renderLeaderboard();
