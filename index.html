@@ -823,15 +823,15 @@ async function loadLiveGrades() {
     if (!standings.length) {
       contentEl.innerHTML = '<p class="muted">No one has picked Week ' + CURRENT_WEEK + ' yet.</p>';
     } else {
-      const body = standings.map((s, idx) => `
+      const leaderCorrect = standings[0].correct; const body = standings.map((s, idx) => `
         <tr>
           <td class="rank-cell">${idx + 1}</td>
           <td class="name-cell">${esc(s.name)}</td>
-          <td class="num">${s.correct}/${decidedCount}</td>
+          <td class="num">${s.correct}/${decidedCount}</td><td class="num">${(leaderCorrect - s.correct) === 0 ? '—' : (leaderCorrect - s.correct)}</td>
           <td>${esc(formatPickedAt(s.submittedAt))}</td>
         </tr>`).join('');
       contentEl.innerHTML = `<table>
-        <thead><tr><th>Rank</th><th>Name</th><th class="num">Correct</th><th>Picked</th></tr></thead>
+        <thead><tr><th>Rank</th><th>Name</th><th class="num">Correct</th><th class="num">Behind</th><th>Picked</th></tr></thead>
         <tbody>${body}</tbody>
       </table>`;
     }
