@@ -411,7 +411,7 @@ function renderStandings(rows) {
     return `<tr>
       <td class="rank-cell ${rankClass}">${medal(r['Season Rank'])}${esc(r['Season Rank'])}</td>
       <td class="name-cell">${esc(r['Name'])}${weeksWon > 0 ? `<span class="pill">${weeksWon} week${weeksWon > 1 ? 's' : ''} won</span>` : ''}</td>
-      <td class="num">${esc(r['Total Correct'])}/${esc(r['Total Games Graded'])}</td>
+      <td class="num">${esc(r['Total Correct'])}/${esc(r['Total Games Graded'])} <span class="muted" style="font-weight:400;">(${Number(r['Total Games Graded']) > 0 ? Math.round(Number(r['Total Correct']) / Number(r['Total Games Graded']) * 100) : 0}%)</span></td>
       <td class="num">${esc(r['Avg Tiebreaker Diff'])}</td>
     </tr>`;
   }).join('');
