@@ -548,6 +548,7 @@ function isPicksLocked() {
 const FORM_ACTION_URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSftFvuBV-_26HckQJNyZURh_PsuQ_9mnjmCd0l2vnENtiSKlw/formResponse";
 const NAME_ENTRY = "entry.1042254620";
 const TIEBREAKER_ENTRY = "entry.863364656";
+const UNUSED_FILLERS = [{ entry: "entry.143664362", value: "Baltimore Ravens" }];
 const GAMES = [
   { matchup: "Seattle Seahawks @ Denver Broncos", kickoff: "Thu 10/15 8:15 PM ET (Prime Video)", away: "Seattle Seahawks", home: "Denver Broncos", entry: "entry.1430673861" },
   { matchup: "Houston Texans @ Jacksonville Jaguars", kickoff: "Sun 10/18 9:30 AM ET (NFL Network, London)", away: "Houston Texans", home: "Jacksonville Jaguars", entry: "entry.2108949720" },
@@ -582,9 +583,11 @@ const PICKS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS_jjqK4C
 function buildGameColumnMap(headerRow) {
   const byGame = GAMES.map(g => headerRow.findIndex(h => h && h.includes(g.away) && h.includes(g.home)));
   const used = new Set(byGame.filter(i => i >= 0));
-  let tbCol = -1;
-  for (let c = 2; c < headerRow.length; c++) {
-    if (!used.has(c)) { tbCol = c; break; }
+  let tbCol = headerRow.findIndex((h, c) => c >= 2 && !used.has(c) && /tiebreaker/i.test(h || ''));
+  if (tbCol < 0) {
+    for (let c = 2; c < headerRow.length; c++) {
+      if (!used.has(c) && !/NOT USED/i.test(headerRow[c] || '')) { tbCol = c; break; }
+    }
   }
   return { byGame, tbCol };
 }
@@ -962,6 +965,9 @@ function submitPicks() {
     addField(NAME_ENTRY, name);
     GAMES.forEach((g, i) => addField(g.entry, picks[i]));
     addField(TIEBREAKER_ENTRY, tbGuess);
+    // Unused-slot filler: the Form's "NOT USED" question can end up marked Required;
+    // answering it with one of its valid options keeps Google from rejecting the submission.
+    UNUSED_FILLERS.forEach(f => addField(f.entry, f.value));
 
     document.body.appendChild(form);
     form.submit();
