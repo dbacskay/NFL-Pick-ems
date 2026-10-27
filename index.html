@@ -260,6 +260,10 @@ label.field-label { display: block; font-size: 13px; font-weight: 600; margin-bo
 
 <script>
 // ---------- Static leaderboard snapshot — republish this page to refresh ----------
+// Sheet timestamps carry no timezone, so they are parsed in each viewer's local zone.
+// Keep this cutoff a safe day-plus after the previous week's last submission (and well
+// before this week's first) so timezone skew can never drop a legitimate pick.
+const PICKS_OPEN_AT = "2026-10-24T00:00:00Z";
 const SNAPSHOT_TAKEN_AT = "2026-10-27T14:10:00Z";
 
 const TRACKER_TEXT = `
@@ -650,7 +654,7 @@ function parseSheetTimestamp(raw) {
 function isThisWeeksRow(row) {
   const ts = parseSheetTimestamp(row[0]);
   if (!ts) return false;
-  return ts.getTime() >= new Date(SNAPSHOT_TAKEN_AT).getTime();
+  return ts.getTime() >= new Date(PICKS_OPEN_AT).getTime();
 }
 
 function formatPickedAt(raw) {
