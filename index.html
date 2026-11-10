@@ -264,7 +264,7 @@ label.field-label { display: block; font-size: 13px; font-weight: 600; margin-bo
 // Keep this cutoff a safe day-plus after the previous week's last submission (and well
 // before this week's first) so timezone skew can never drop a legitimate pick.
 const PICKS_OPEN_AT = "2026-11-02T00:00:00Z";
-const SNAPSHOT_TAKEN_AT = "2026-11-03T07:51:00Z";
+const SNAPSHOT_TAKEN_AT = "2026-11-10T07:50:00Z";
 
 const TRACKER_TEXT = `
 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
@@ -350,41 +350,43 @@ const TRACKER_TEXT = `
 | 8 | Kris Z | 8 | 14 | 48 | 51 | 3 | 8 | N |  |  |  |  |  |  |  |  |  |
 | 8 | Boomer | 8 | 14 | 37 | 51 | 14 | 9 | N |  |  |  |  |  |  |  |  |  |
 | 8 | Taylor | 7 | 14 | 33 | 51 | 18 | 10 | N |  |  |  |  |  |  |  |  |  |
+| 9 | michael austin | 14 | 15 | 38 | 29 | 9 | 1 | Y |  |  |  |  |  |  |  |  |  |
+| 9 | michael owens | 14 | 15 | 42 | 29 | 13 | 2 | N |  |  |  |  |  |  |  |  |  |
+| 9 | James Keller | 13 | 15 | 49 | 29 | 20 | 3 | N |  |  |  |  |  |  |  |  |  |
+| 9 | Kris Z | 12 | 15 | 57 | 29 | 28 | 4 | N |  |  |  |  |  |  |  |  |  |
+| 9 | Devon Bacskay | 11 | 15 | 53 | 29 | 24 | 5 | N |  |  |  |  |  |  |  |  |  |
+| 9 | Rob | 9 | 15 | 49 | 29 | 20 | 6 | N |  |  |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | Season Standings |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | Season Rank | Name | Total Correct | Total Games Graded | Weeks Won | Avg Tiebreaker Diff |  |  |  |  |  |  |  |  |  |  |  |  |
-| 1 | michael owens | 76 | 121 | 0 | 13 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 2 | Boomer | 70 | 121 | 0 | 16.88 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 3 | Kris Z | 67 | 105 | 1 | 10 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 3 | James Keller | 67 | 106 | 2 | 15.29 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 5 | Devon Bacskay | 64 | 121 | 0 | 10.75 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 6 | Rob | 62 | 105 | 1 | 17.57 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 6 | Quick | 62 | 105 | 1 | 17.71 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 1 | michael owens | 90 | 136 | 0 | 13 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 2 | James Keller | 80 | 121 | 2 | 15.88 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 3 | Kris Z | 79 | 120 | 1 | 12.25 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 4 | Devon Bacskay | 75 | 136 | 0 | 12.22 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 5 | Rob | 71 | 120 | 1 | 17.88 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 6 | Boomer | 70 | 121 | 0 | 16.88 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 7 | Quick | 62 | 105 | 1 | 17.71 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 8 | Matt craven | 49 | 75 | 1 | 12.6 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 9 | Cheyenne k | 36 | 61 | 1 | 17 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 10 | Dale | 33 | 63 | 0 | 18.75 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 11 | Jake Nobriga | 28 | 48 | 1 | 15.33 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 12 | Justin P. | 27 | 47 | 0 | 9.67 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 13 | michael austin | 18 | 30 | 1 | 3.5 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 11 | michael austin | 32 | 45 | 2 | 5.33 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 12 | Jake Nobriga | 28 | 48 | 1 | 15.33 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 13 | Justin P. | 27 | 47 | 0 | 9.67 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 14 | Taylor | 16 | 28 | 0 | 22 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 15 | Jon Bacskay | 8 | 16 | 0 | 1 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 15 | Roshini | 8 | 16 | 0 | 32 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 17 | Zach Bacskay | 7 | 16 | 0 | 7 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 18 | Vanessa renteria | 5 | 14 | 0 | 10 |  |  |  |  |  |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| Week 8 Picks |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| Name | CAR@GB | BAL@BUF | TEN@CIN | ARI@DAL | MIN@DET | IND@JAX | LV@NYJ | CLE@PIT | ATL@TB | LAC@LAR | KC@DEN | NE@MIA | PHI@WSH | CHI@SEA | TB Guess |
-| ACTUAL RESULT | Green Bay Packers | Buffalo Bills | Cincinnati Bengals | Arizona Cardinals | Detroit Lions | Jacksonville Jaguars | Las Vegas Raiders | Pittsburgh Steelers | Tampa Bay Buccaneers | Los Angeles Rams | Denver Broncos | New England Patriots | Washington Commanders | Chicago Bears | 51 |
-| michael austin | Green Bay Packers | Buffalo Bills | Cincinnati Bengals | Dallas Cowboys | Detroit Lions | Jacksonville Jaguars | Las Vegas Raiders | Cleveland Browns | Tampa Bay Buccaneers | Los Angeles Rams | Denver Broncos | New England Patriots | Washington Commanders | Chicago Bears | 44 |
-| Matt craven | Green Bay Packers | Buffalo Bills | Cincinnati Bengals | Dallas Cowboys | Detroit Lions | Jacksonville Jaguars | Las Vegas Raiders | Pittsburgh Steelers | Atlanta Falcons | Los Angeles Rams | Kansas City Chiefs | New England Patriots | Washington Commanders | Chicago Bears | 49 |
-| michael owens | Green Bay Packers | Baltimore Ravens | Cincinnati Bengals | Dallas Cowboys | Detroit Lions | Jacksonville Jaguars | Las Vegas Raiders | Pittsburgh Steelers | Tampa Bay Buccaneers | Los Angeles Rams | Kansas City Chiefs | New England Patriots | Washington Commanders | Chicago Bears | 46 |
-| Rob | Green Bay Packers | Buffalo Bills | Cincinnati Bengals | Arizona Cardinals | Minnesota Vikings | Jacksonville Jaguars | New York Jets | Pittsburgh Steelers | Atlanta Falcons | Los Angeles Rams | Denver Broncos | New England Patriots | Washington Commanders | Chicago Bears | 44 |
-| James Keller | Carolina Panthers | Buffalo Bills | Cincinnati Bengals | Dallas Cowboys | Minnesota Vikings | Jacksonville Jaguars | Las Vegas Raiders | Cleveland Browns | Atlanta Falcons | Los Angeles Rams | Denver Broncos | New England Patriots | Washington Commanders | Chicago Bears | 55 |
-| Quick | Green Bay Packers | Buffalo Bills | Cincinnati Bengals | Dallas Cowboys | Minnesota Vikings | Jacksonville Jaguars | Las Vegas Raiders | Cleveland Browns | Tampa Bay Buccaneers | Los Angeles Rams | Kansas City Chiefs | New England Patriots | Washington Commanders | Seattle Seahawks | 38 |
-| Devon Bacskay | Carolina Panthers | Baltimore Ravens | Cincinnati Bengals | Dallas Cowboys | Detroit Lions | Jacksonville Jaguars | Las Vegas Raiders | Cleveland Browns | Atlanta Falcons | Los Angeles Rams | Kansas City Chiefs | New England Patriots | Washington Commanders | Chicago Bears | 52 |
-| Kris Z | Carolina Panthers | Buffalo Bills | Cincinnati Bengals | Dallas Cowboys | Minnesota Vikings | Jacksonville Jaguars | Las Vegas Raiders | Cleveland Browns | Atlanta Falcons | Los Angeles Rams | Denver Broncos | New England Patriots | Philadelphia Eagles | Chicago Bears | 48 |
-| Boomer | Green Bay Packers | Buffalo Bills | Cincinnati Bengals | Dallas Cowboys | Minnesota Vikings | Jacksonville Jaguars | Las Vegas Raiders | Pittsburgh Steelers | Atlanta Falcons | Los Angeles Rams | Kansas City Chiefs | New England Patriots | Philadelphia Eagles | Seattle Seahawks | 37 |
-| Taylor | Green Bay Packers | Buffalo Bills | Cincinnati Bengals | Dallas Cowboys | Minnesota Vikings | Jacksonville Jaguars | New York Jets | Cleveland Browns | Tampa Bay Buccaneers | Los Angeles Rams | Kansas City Chiefs | New England Patriots | Philadelphia Eagles | Seattle Seahawks | 33 |
+| Week 9 Picks |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Name | JAX@BAL | CIN@ATL | DAL@IND | LAR@WSH | CLE@NO | NYJ@KC | DET@MIA | DEN@CAR | NYG@PHI | HOU@LAC | LV@SF | GB@NE | ARI@SEA | TB@CHI | BUF@MIN | TB Guess |
+| ACTUAL RESULT | Jacksonville Jaguars | Cincinnati Bengals | Dallas Cowboys | Los Angeles Rams | New Orleans Saints | Kansas City Chiefs | Detroit Lions | Denver Broncos | New York Giants | Houston Texans | San Francisco 49ers | Green Bay Packers | Seattle Seahawks | Chicago Bears | Buffalo Bills | 29 |
+| michael austin | Jacksonville Jaguars | Cincinnati Bengals | Dallas Cowboys | Los Angeles Rams | Cleveland Browns | Kansas City Chiefs | Detroit Lions | Denver Broncos | New York Giants | Houston Texans | San Francisco 49ers | Green Bay Packers | Seattle Seahawks | Chicago Bears | Buffalo Bills | 38 |
+| michael owens | Jacksonville Jaguars | Cincinnati Bengals | Dallas Cowboys | Los Angeles Rams | New Orleans Saints | Kansas City Chiefs | Detroit Lions | Carolina Panthers | New York Giants | Houston Texans | San Francisco 49ers | Green Bay Packers | Seattle Seahawks | Chicago Bears | Buffalo Bills | 42 |
+| James Keller | Jacksonville Jaguars | Cincinnati Bengals | Dallas Cowboys | Los Angeles Rams | Cleveland Browns | Kansas City Chiefs | Detroit Lions | Denver Broncos | New York Giants | Houston Texans | San Francisco 49ers | New England Patriots | Seattle Seahawks | Chicago Bears | Buffalo Bills | 49 |
+| Kris Z | Jacksonville Jaguars | Cincinnati Bengals | Dallas Cowboys | Los Angeles Rams | Cleveland Browns | Kansas City Chiefs | Detroit Lions | Denver Broncos | New York Giants | Houston Texans | San Francisco 49ers | Green Bay Packers | Arizona Cardinals | Chicago Bears | Minnesota Vikings | 57 |
+| Devon Bacskay | Baltimore Ravens | Cincinnati Bengals | Dallas Cowboys | Washington Commanders | Cleveland Browns | Kansas City Chiefs | Detroit Lions | Denver Broncos | New York Giants | Houston Texans | San Francisco 49ers | Green Bay Packers | Arizona Cardinals | Chicago Bears | Buffalo Bills | 53 |
+| Rob | Jacksonville Jaguars | Cincinnati Bengals | Indianapolis Colts | Washington Commanders | Cleveland Browns | Kansas City Chiefs | Detroit Lions | Carolina Panthers | New York Giants | Houston Texans | San Francisco 49ers | New England Patriots | Arizona Cardinals | Chicago Bears | Buffalo Bills | 49 |
 `;
 
 function esc(s) {
@@ -1036,5 +1038,6 @@ renderPicksTab();
 loadLivePicks();
 loadLiveGrades();
 </script>
+
 </body>
 </html>
