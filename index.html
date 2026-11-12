@@ -263,7 +263,7 @@ label.field-label { display: block; font-size: 13px; font-weight: 600; margin-bo
 // Sheet timestamps carry no timezone, so they are parsed in each viewer's local zone.
 // Keep this cutoff a safe day-plus after the previous week's last submission (and well
 // before this week's first) so timezone skew can never drop a legitimate pick.
-const PICKS_OPEN_AT = "2026-11-02T00:00:00Z";
+const PICKS_OPEN_AT = "2026-11-10T00:00:00Z";
 const SNAPSHOT_TAKEN_AT = "2026-11-10T07:50:00Z";
 
 const TRACKER_TEXT = `
@@ -574,10 +574,10 @@ function renderLeaderboard() {
 // This form's entry IDs stay fixed week to week; only the matchups/options below
 // need to change. Editing the same Google Form's question text/options (rather
 // than recreating questions) keeps these IDs valid.
-const CURRENT_WEEK = 9;
+const CURRENT_WEEK = 10;
 // Picks close once the first game of the week kicks off — update this every week to
-// match Game 1's kickoff time (in UTC). Thu 11/5/2026 8:15 PM ET (EST, UTC-5) = below.
-const PICKS_LOCK_AT = "2026-11-06T01:15:00Z";
+// match Game 1's kickoff time (in UTC). Thu 11/12/2026 8:15 PM ET (EST, UTC-5) = below.
+const PICKS_LOCK_AT = "2026-11-13T01:15:00Z";
 function isPicksLocked() {
   return Date.now() >= new Date(PICKS_LOCK_AT).getTime();
 }
@@ -586,21 +586,20 @@ const NAME_ENTRY = "entry.1042254620";
 const TIEBREAKER_ENTRY = "entry.863364656";
 const UNUSED_FILLERS = [];
 const GAMES = [
-  { matchup: "Jacksonville Jaguars @ Baltimore Ravens", kickoff: "Thu 11/5 8:15 PM ET (Prime Video)", away: "Jacksonville Jaguars", home: "Baltimore Ravens", entry: "entry.1430673861" },
-  { matchup: "Cincinnati Bengals @ Atlanta Falcons", kickoff: "Sun 11/8 9:30 AM ET (NFL Network, Madrid)", away: "Cincinnati Bengals", home: "Atlanta Falcons", entry: "entry.2108949720" },
-  { matchup: "Dallas Cowboys @ Indianapolis Colts", kickoff: "Sun 11/8 1:00 PM ET (FOX)", away: "Dallas Cowboys", home: "Indianapolis Colts", entry: "entry.441562585" },
-  { matchup: "Los Angeles Rams @ Washington Commanders", kickoff: "Sun 11/8 1:00 PM ET (FOX)", away: "Los Angeles Rams", home: "Washington Commanders", entry: "entry.217602783" },
-  { matchup: "Cleveland Browns @ New Orleans Saints", kickoff: "Sun 11/8 1:00 PM ET (CBS)", away: "Cleveland Browns", home: "New Orleans Saints", entry: "entry.1796722167" },
-  { matchup: "New York Jets @ Kansas City Chiefs", kickoff: "Sun 11/8 1:00 PM ET (CBS)", away: "New York Jets", home: "Kansas City Chiefs", entry: "entry.1169487905" },
-  { matchup: "Detroit Lions @ Miami Dolphins", kickoff: "Sun 11/8 1:00 PM ET (CBS)", away: "Detroit Lions", home: "Miami Dolphins", entry: "entry.145057882" },
-  { matchup: "Denver Broncos @ Carolina Panthers", kickoff: "Sun 11/8 1:00 PM ET (CBS)", away: "Denver Broncos", home: "Carolina Panthers", entry: "entry.1832158450" },
-  { matchup: "New York Giants @ Philadelphia Eagles", kickoff: "Sun 11/8 1:00 PM ET (FOX)", away: "New York Giants", home: "Philadelphia Eagles", entry: "entry.326102835" },
-  { matchup: "Houston Texans @ Los Angeles Chargers", kickoff: "Sun 11/8 4:05 PM ET (CBS)", away: "Houston Texans", home: "Los Angeles Chargers", entry: "entry.53406833" },
-  { matchup: "Las Vegas Raiders @ San Francisco 49ers", kickoff: "Sun 11/8 4:25 PM ET (FOX)", away: "Las Vegas Raiders", home: "San Francisco 49ers", entry: "entry.2030992036" },
-  { matchup: "Green Bay Packers @ New England Patriots", kickoff: "Sun 11/8 4:25 PM ET (FOX)", away: "Green Bay Packers", home: "New England Patriots", entry: "entry.1153349899" },
-  { matchup: "Arizona Cardinals @ Seattle Seahawks", kickoff: "Sun 11/8 4:25 PM ET (FOX)", away: "Arizona Cardinals", home: "Seattle Seahawks", entry: "entry.819301550" },
-  { matchup: "Tampa Bay Buccaneers @ Chicago Bears", kickoff: "Sun 11/8 8:20 PM ET (NBC)", away: "Tampa Bay Buccaneers", home: "Chicago Bears", entry: "entry.143664362" },
-  { matchup: "Buffalo Bills @ Minnesota Vikings", kickoff: "Mon 11/9 8:15 PM ET (ESPN/ABC)", away: "Buffalo Bills", home: "Minnesota Vikings", entry: "entry.2136714502", tiebreaker: true }
+  { matchup: "Washington Commanders @ New York Giants", kickoff: "Thu 11/12 8:15 PM ET (Prime Video)", away: "Washington Commanders", home: "New York Giants", entry: "entry.1430673861" },
+  { matchup: "New England Patriots @ Detroit Lions", kickoff: "Sun 11/15 9:30 AM ET (FOX, Munich)", away: "New England Patriots", home: "Detroit Lions", entry: "entry.2108949720" },
+  { matchup: "Kansas City Chiefs @ Atlanta Falcons", kickoff: "Sun 11/15 1:00 PM ET (CBS)", away: "Kansas City Chiefs", home: "Atlanta Falcons", entry: "entry.441562585" },
+  { matchup: "Buffalo Bills @ New York Jets", kickoff: "Sun 11/15 1:00 PM ET (CBS)", away: "Buffalo Bills", home: "New York Jets", entry: "entry.217602783" },
+  { matchup: "Carolina Panthers @ New Orleans Saints", kickoff: "Sun 11/15 1:00 PM ET (FOX)", away: "Carolina Panthers", home: "New Orleans Saints", entry: "entry.1796722167" },
+  { matchup: "Houston Texans @ Cleveland Browns", kickoff: "Sun 11/15 1:00 PM ET (FOX)", away: "Houston Texans", home: "Cleveland Browns", entry: "entry.1169487905" },
+  { matchup: "Minnesota Vikings @ Green Bay Packers", kickoff: "Sun 11/15 1:00 PM ET (FOX)", away: "Minnesota Vikings", home: "Green Bay Packers", entry: "entry.145057882" },
+  { matchup: "Miami Dolphins @ Indianapolis Colts", kickoff: "Sun 11/15 1:00 PM ET (CBS)", away: "Miami Dolphins", home: "Indianapolis Colts", entry: "entry.1832158450" },
+  { matchup: "Jacksonville Jaguars @ Tennessee Titans", kickoff: "Sun 11/15 1:00 PM ET (FOX)", away: "Jacksonville Jaguars", home: "Tennessee Titans", entry: "entry.326102835" },
+  { matchup: "Los Angeles Rams @ Arizona Cardinals", kickoff: "Sun 11/15 4:05 PM ET (CBS)", away: "Los Angeles Rams", home: "Arizona Cardinals", entry: "entry.53406833" },
+  { matchup: "Seattle Seahawks @ Las Vegas Raiders", kickoff: "Sun 11/15 4:05 PM ET (CBS)", away: "Seattle Seahawks", home: "Las Vegas Raiders", entry: "entry.2030992036" },
+  { matchup: "San Francisco 49ers @ Dallas Cowboys", kickoff: "Sun 11/15 4:25 PM ET (FOX)", away: "San Francisco 49ers", home: "Dallas Cowboys", entry: "entry.1153349899" },
+  { matchup: "Pittsburgh Steelers @ Cincinnati Bengals", kickoff: "Sun 11/15 8:20 PM ET (NBC)", away: "Pittsburgh Steelers", home: "Cincinnati Bengals", entry: "entry.819301550" },
+  { matchup: "Los Angeles Chargers @ Baltimore Ravens", kickoff: "Mon 11/16 8:15 PM ET (ESPN)", away: "Los Angeles Chargers", home: "Baltimore Ravens", entry: "entry.143664362", tiebreaker: true }
 ];
 
 // ---------- Live "Week N Picks" — reads straight from the Form's response sheet ----------
