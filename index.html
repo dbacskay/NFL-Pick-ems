@@ -263,8 +263,8 @@ label.field-label { display: block; font-size: 13px; font-weight: 600; margin-bo
 // Sheet timestamps carry no timezone, so they are parsed in each viewer's local zone.
 // Keep this cutoff a safe day-plus after the previous week's last submission (and well
 // before this week's first) so timezone skew can never drop a legitimate pick.
-const PICKS_OPEN_AT = "2026-11-10T00:00:00Z";
-const SNAPSHOT_TAKEN_AT = "2026-11-10T07:50:00Z";
+const PICKS_OPEN_AT = "2026-11-19T00:00:00Z";
+const SNAPSHOT_TAKEN_AT = "2026-11-19T08:50:00Z";
 
 const TRACKER_TEXT = `
 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
@@ -356,37 +356,47 @@ const TRACKER_TEXT = `
 | 9 | Kris Z | 12 | 15 | 57 | 29 | 28 | 4 | N |  |  |  |  |  |  |  |  |  |
 | 9 | Devon Bacskay | 11 | 15 | 53 | 29 | 24 | 5 | N |  |  |  |  |  |  |  |  |  |
 | 9 | Rob | 9 | 15 | 49 | 29 | 20 | 6 | N |  |  |  |  |  |  |  |  |  |
+| 10 | Kris Z | 12 | 14 | 44 | 43 | 1 | 1 | Y |  |  |  |  |  |  |  |  |  |
+| 10 | michael owens | 11 | 14 | 36 | 43 | 7 | 2 | N |  |  |  |  |  |  |  |  |  |
+| 10 | Devon Bacskay | 9 | 14 | 37 | 43 | 6 | 3 | N |  |  |  |  |  |  |  |  |  |
+| 10 | Rob | 9 | 14 | 36 | 43 | 7 | 4 | N |  |  |  |  |  |  |  |  |  |
+| 10 | Vanessa renteria | 9 | 14 | 35 | 43 | 8 | 5 | N |  |  |  |  |  |  |  |  |  |
+| 10 | michael austin | 9 | 14 | 32 | 43 | 11 | 6 | N |  |  |  |  |  |  |  |  |  |
+| 10 | James Keller | 8 | 14 | 44 | 43 | 1 | 7 | N |  |  |  |  |  |  |  |  |  |
+| 10 | Cheyenne k | 7 | 14 | 47 | 43 | 4 | 8 | N |  |  |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | Season Standings |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | Season Rank | Name | Total Correct | Total Games Graded | Weeks Won | Avg Tiebreaker Diff |  |  |  |  |  |  |  |  |  |  |  |  |
-| 1 | michael owens | 90 | 136 | 0 | 13 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 2 | James Keller | 80 | 121 | 2 | 15.88 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 3 | Kris Z | 79 | 120 | 1 | 12.25 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 4 | Devon Bacskay | 75 | 136 | 0 | 12.22 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 5 | Rob | 71 | 120 | 1 | 17.88 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 1 | michael owens | 101 | 150 | 0 | 12.4 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 2 | Kris Z | 91 | 134 | 2 | 11 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 3 | James Keller | 88 | 135 | 2 | 14.22 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 4 | Devon Bacskay | 84 | 150 | 0 | 11.6 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 5 | Rob | 80 | 134 | 1 | 16.67 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 6 | Boomer | 70 | 121 | 0 | 16.88 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 7 | Quick | 62 | 105 | 1 | 17.71 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 8 | Matt craven | 49 | 75 | 1 | 12.6 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 9 | Cheyenne k | 36 | 61 | 1 | 17 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 10 | Dale | 33 | 63 | 0 | 18.75 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 11 | michael austin | 32 | 45 | 2 | 5.33 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 9 | Cheyenne k | 43 | 75 | 1 | 14.4 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 10 | michael austin | 41 | 59 | 2 | 6.75 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 11 | Dale | 33 | 63 | 0 | 18.75 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 12 | Jake Nobriga | 28 | 48 | 1 | 15.33 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 13 | Justin P. | 27 | 47 | 0 | 9.67 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 14 | Taylor | 16 | 28 | 0 | 22 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 15 | Jon Bacskay | 8 | 16 | 0 | 1 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 15 | Roshini | 8 | 16 | 0 | 32 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 17 | Zach Bacskay | 7 | 16 | 0 | 7 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 18 | Vanessa renteria | 5 | 14 | 0 | 10 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 15 | Vanessa renteria | 14 | 28 | 0 | 9 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 16 | Jon Bacskay | 8 | 16 | 0 | 1 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 16 | Roshini | 8 | 16 | 0 | 32 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 18 | Zach Bacskay | 7 | 16 | 0 | 7 |  |  |  |  |  |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| Week 9 Picks |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| Name | JAX@BAL | CIN@ATL | DAL@IND | LAR@WSH | CLE@NO | NYJ@KC | DET@MIA | DEN@CAR | NYG@PHI | HOU@LAC | LV@SF | GB@NE | ARI@SEA | TB@CHI | BUF@MIN | TB Guess |
-| ACTUAL RESULT | Jacksonville Jaguars | Cincinnati Bengals | Dallas Cowboys | Los Angeles Rams | New Orleans Saints | Kansas City Chiefs | Detroit Lions | Denver Broncos | New York Giants | Houston Texans | San Francisco 49ers | Green Bay Packers | Seattle Seahawks | Chicago Bears | Buffalo Bills | 29 |
-| michael austin | Jacksonville Jaguars | Cincinnati Bengals | Dallas Cowboys | Los Angeles Rams | Cleveland Browns | Kansas City Chiefs | Detroit Lions | Denver Broncos | New York Giants | Houston Texans | San Francisco 49ers | Green Bay Packers | Seattle Seahawks | Chicago Bears | Buffalo Bills | 38 |
-| michael owens | Jacksonville Jaguars | Cincinnati Bengals | Dallas Cowboys | Los Angeles Rams | New Orleans Saints | Kansas City Chiefs | Detroit Lions | Carolina Panthers | New York Giants | Houston Texans | San Francisco 49ers | Green Bay Packers | Seattle Seahawks | Chicago Bears | Buffalo Bills | 42 |
-| James Keller | Jacksonville Jaguars | Cincinnati Bengals | Dallas Cowboys | Los Angeles Rams | Cleveland Browns | Kansas City Chiefs | Detroit Lions | Denver Broncos | New York Giants | Houston Texans | San Francisco 49ers | New England Patriots | Seattle Seahawks | Chicago Bears | Buffalo Bills | 49 |
-| Kris Z | Jacksonville Jaguars | Cincinnati Bengals | Dallas Cowboys | Los Angeles Rams | Cleveland Browns | Kansas City Chiefs | Detroit Lions | Denver Broncos | New York Giants | Houston Texans | San Francisco 49ers | Green Bay Packers | Arizona Cardinals | Chicago Bears | Minnesota Vikings | 57 |
-| Devon Bacskay | Baltimore Ravens | Cincinnati Bengals | Dallas Cowboys | Washington Commanders | Cleveland Browns | Kansas City Chiefs | Detroit Lions | Denver Broncos | New York Giants | Houston Texans | San Francisco 49ers | Green Bay Packers | Arizona Cardinals | Chicago Bears | Buffalo Bills | 53 |
-| Rob | Jacksonville Jaguars | Cincinnati Bengals | Indianapolis Colts | Washington Commanders | Cleveland Browns | Kansas City Chiefs | Detroit Lions | Carolina Panthers | New York Giants | Houston Texans | San Francisco 49ers | New England Patriots | Arizona Cardinals | Chicago Bears | Buffalo Bills | 49 |
+| Week 10 Picks |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Name | WSH@NYG | NE@DET | KC@ATL | BUF@NYJ | CAR@NO | HOU@CLE | MIN@GB | MIA@IND | JAX@TEN | LAR@ARI | SEA@LV | SF@DAL | PIT@CIN | LAC@BAL | TB Guess |
+| ACTUAL RESULT | Washington Commanders | Detroit Lions | Kansas City Chiefs | Buffalo Bills | Carolina Panthers | Cleveland Browns | Minnesota Vikings | Indianapolis Colts | Jacksonville Jaguars | Los Angeles Rams | Seattle Seahawks | San Francisco 49ers | Cincinnati Bengals | Los Angeles Chargers | 43 |
+| Kris Z | New York Giants | Detroit Lions | Kansas City Chiefs | Buffalo Bills | Carolina Panthers | Cleveland Browns | Minnesota Vikings | Indianapolis Colts | Jacksonville Jaguars | Los Angeles Rams | Seattle Seahawks | San Francisco 49ers | Cincinnati Bengals | Baltimore Ravens | 44 |
+| michael owens | New York Giants | Detroit Lions | Kansas City Chiefs | Buffalo Bills | Carolina Panthers | Cleveland Browns | Green Bay Packers | Indianapolis Colts | Jacksonville Jaguars | Los Angeles Rams | Seattle Seahawks | San Francisco 49ers | Cincinnati Bengals | Baltimore Ravens | 36 |
+| Devon Bacskay | New York Giants | Detroit Lions | Kansas City Chiefs | Buffalo Bills | Carolina Panthers | Houston Texans | Green Bay Packers | Miami Dolphins | Jacksonville Jaguars | Los Angeles Rams | Seattle Seahawks | San Francisco 49ers | Cincinnati Bengals | Baltimore Ravens | 37 |
+| Rob | New York Giants | Detroit Lions | Kansas City Chiefs | Buffalo Bills | New Orleans Saints | Cleveland Browns | Green Bay Packers | Indianapolis Colts | Jacksonville Jaguars | Arizona Cardinals | Seattle Seahawks | San Francisco 49ers | Cincinnati Bengals | Baltimore Ravens | 36 |
+| Vanessa renteria | Washington Commanders | Detroit Lions | Atlanta Falcons | Buffalo Bills | New Orleans Saints | Cleveland Browns | Minnesota Vikings | Indianapolis Colts | Jacksonville Jaguars | Los Angeles Rams | Las Vegas Raiders | San Francisco 49ers | Pittsburgh Steelers | Baltimore Ravens | 35 |
+| michael austin | New York Giants | Detroit Lions | Kansas City Chiefs | Buffalo Bills | Carolina Panthers | Houston Texans | Green Bay Packers | Miami Dolphins | Jacksonville Jaguars | Los Angeles Rams | Seattle Seahawks | San Francisco 49ers | Cincinnati Bengals | Baltimore Ravens | 32 |
+| James Keller | New York Giants | New England Patriots | Kansas City Chiefs | Buffalo Bills | Carolina Panthers | Houston Texans | Green Bay Packers | Miami Dolphins | Jacksonville Jaguars | Los Angeles Rams | Seattle Seahawks | San Francisco 49ers | Cincinnati Bengals | Baltimore Ravens | 44 |
+| Cheyenne k | New York Giants | New England Patriots | Kansas City Chiefs | Buffalo Bills | New Orleans Saints | Cleveland Browns | Green Bay Packers | Indianapolis Colts | Tennessee Titans | Los Angeles Rams | Seattle Seahawks | San Francisco 49ers | Pittsburgh Steelers | Baltimore Ravens | 47 |
 `;
 
 function esc(s) {
@@ -574,10 +584,10 @@ function renderLeaderboard() {
 // This form's entry IDs stay fixed week to week; only the matchups/options below
 // need to change. Editing the same Google Form's question text/options (rather
 // than recreating questions) keeps these IDs valid.
-const CURRENT_WEEK = 10;
+const CURRENT_WEEK = 11;
 // Picks close once the first game of the week kicks off — update this every week to
-// match Game 1's kickoff time (in UTC). Thu 11/12/2026 8:15 PM ET (EST, UTC-5) = below.
-const PICKS_LOCK_AT = "2026-11-13T01:15:00Z";
+// match Game 1's kickoff time (in UTC). Thu 11/19/2026 8:15 PM ET (EST, UTC-5) = below.
+const PICKS_LOCK_AT = "2026-11-22T18:00:00Z";
 function isPicksLocked() {
   return Date.now() >= new Date(PICKS_LOCK_AT).getTime();
 }
@@ -586,20 +596,19 @@ const NAME_ENTRY = "entry.1042254620";
 const TIEBREAKER_ENTRY = "entry.863364656";
 const UNUSED_FILLERS = [];
 const GAMES = [
-  { matchup: "Washington Commanders @ New York Giants", kickoff: "Thu 11/12 8:15 PM ET (Prime Video)", away: "Washington Commanders", home: "New York Giants", entry: "entry.1430673861" },
-  { matchup: "New England Patriots @ Detroit Lions", kickoff: "Sun 11/15 9:30 AM ET (FOX, Munich)", away: "New England Patriots", home: "Detroit Lions", entry: "entry.2108949720" },
-  { matchup: "Kansas City Chiefs @ Atlanta Falcons", kickoff: "Sun 11/15 1:00 PM ET (CBS)", away: "Kansas City Chiefs", home: "Atlanta Falcons", entry: "entry.441562585" },
-  { matchup: "Buffalo Bills @ New York Jets", kickoff: "Sun 11/15 1:00 PM ET (CBS)", away: "Buffalo Bills", home: "New York Jets", entry: "entry.217602783" },
-  { matchup: "Carolina Panthers @ New Orleans Saints", kickoff: "Sun 11/15 1:00 PM ET (FOX)", away: "Carolina Panthers", home: "New Orleans Saints", entry: "entry.1796722167" },
-  { matchup: "Houston Texans @ Cleveland Browns", kickoff: "Sun 11/15 1:00 PM ET (FOX)", away: "Houston Texans", home: "Cleveland Browns", entry: "entry.1169487905" },
-  { matchup: "Minnesota Vikings @ Green Bay Packers", kickoff: "Sun 11/15 1:00 PM ET (FOX)", away: "Minnesota Vikings", home: "Green Bay Packers", entry: "entry.145057882" },
-  { matchup: "Miami Dolphins @ Indianapolis Colts", kickoff: "Sun 11/15 1:00 PM ET (CBS)", away: "Miami Dolphins", home: "Indianapolis Colts", entry: "entry.1832158450" },
-  { matchup: "Jacksonville Jaguars @ Tennessee Titans", kickoff: "Sun 11/15 1:00 PM ET (FOX)", away: "Jacksonville Jaguars", home: "Tennessee Titans", entry: "entry.326102835" },
-  { matchup: "Los Angeles Rams @ Arizona Cardinals", kickoff: "Sun 11/15 4:05 PM ET (CBS)", away: "Los Angeles Rams", home: "Arizona Cardinals", entry: "entry.53406833" },
-  { matchup: "Seattle Seahawks @ Las Vegas Raiders", kickoff: "Sun 11/15 4:05 PM ET (CBS)", away: "Seattle Seahawks", home: "Las Vegas Raiders", entry: "entry.2030992036" },
-  { matchup: "San Francisco 49ers @ Dallas Cowboys", kickoff: "Sun 11/15 4:25 PM ET (FOX)", away: "San Francisco 49ers", home: "Dallas Cowboys", entry: "entry.1153349899" },
-  { matchup: "Pittsburgh Steelers @ Cincinnati Bengals", kickoff: "Sun 11/15 8:20 PM ET (NBC)", away: "Pittsburgh Steelers", home: "Cincinnati Bengals", entry: "entry.819301550" },
-  { matchup: "Los Angeles Chargers @ Baltimore Ravens", kickoff: "Mon 11/16 8:15 PM ET (ESPN)", away: "Los Angeles Chargers", home: "Baltimore Ravens", entry: "entry.143664362", tiebreaker: true }
+  { matchup: "Indianapolis Colts @ Houston Texans", kickoff: "Thu 11/19 8:15 PM ET (Prime Video)", away: "Indianapolis Colts", home: "Houston Texans", entry: "entry.1430673861" },
+  { matchup: "Arizona Cardinals @ Kansas City Chiefs", kickoff: "Sun 11/22 1:00 PM ET (CBS)", away: "Arizona Cardinals", home: "Kansas City Chiefs", entry: "entry.2108949720" },
+  { matchup: "Baltimore Ravens @ Carolina Panthers", kickoff: "Sun 11/22 1:00 PM ET (FOX)", away: "Baltimore Ravens", home: "Carolina Panthers", entry: "entry.441562585" },
+  { matchup: "Miami Dolphins @ Buffalo Bills", kickoff: "Sun 11/22 1:00 PM ET (CBS)", away: "Miami Dolphins", home: "Buffalo Bills", entry: "entry.217602783" },
+  { matchup: "New Orleans Saints @ Chicago Bears", kickoff: "Sun 11/22 1:00 PM ET (FOX)", away: "New Orleans Saints", home: "Chicago Bears", entry: "entry.1796722167" },
+  { matchup: "Tennessee Titans @ Dallas Cowboys", kickoff: "Sun 11/22 1:00 PM ET (FOX)", away: "Tennessee Titans", home: "Dallas Cowboys", entry: "entry.1169487905" },
+  { matchup: "Tampa Bay Buccaneers @ Detroit Lions", kickoff: "Sun 11/22 1:00 PM ET (FOX)", away: "Tampa Bay Buccaneers", home: "Detroit Lions", entry: "entry.145057882" },
+  { matchup: "Pittsburgh Steelers @ Philadelphia Eagles", kickoff: "Sun 11/22 1:00 PM ET (CBS)", away: "Pittsburgh Steelers", home: "Philadelphia Eagles", entry: "entry.1832158450" },
+  { matchup: "New York Jets @ Los Angeles Chargers", kickoff: "Sun 11/22 4:05 PM ET (FOX)", away: "New York Jets", home: "Los Angeles Chargers", entry: "entry.326102835" },
+  { matchup: "Las Vegas Raiders @ Denver Broncos", kickoff: "Sun 11/22 4:25 PM ET (CBS)", away: "Las Vegas Raiders", home: "Denver Broncos", entry: "entry.53406833" },
+  { matchup: "Jacksonville Jaguars @ New York Giants", kickoff: "Sun 11/22 4:25 PM ET (CBS)", away: "Jacksonville Jaguars", home: "New York Giants", entry: "entry.2030992036" },
+  { matchup: "Minnesota Vikings @ San Francisco 49ers", kickoff: "Sun 11/22 8:20 PM ET (NBC, Mexico City)", away: "Minnesota Vikings", home: "San Francisco 49ers", entry: "entry.1153349899" },
+  { matchup: "Cincinnati Bengals @ Washington Commanders", kickoff: "Mon 11/23 8:15 PM ET (ESPN)", away: "Cincinnati Bengals", home: "Washington Commanders", entry: "entry.819301550", tiebreaker: true }
 ];
 
 // ---------- Live "Week N Picks" — reads straight from the Form's response sheet ----------
