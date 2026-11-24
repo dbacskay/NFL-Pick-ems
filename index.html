@@ -264,7 +264,7 @@ label.field-label { display: block; font-size: 13px; font-weight: 600; margin-bo
 // Keep this cutoff a safe day-plus after the previous week's last submission (and well
 // before this week's first) so timezone skew can never drop a legitimate pick.
 const PICKS_OPEN_AT = "2026-11-19T00:00:00Z";
-const SNAPSHOT_TAKEN_AT = "2026-11-19T08:50:00Z";
+const SNAPSHOT_TAKEN_AT = "2026-11-24T08:00:00Z";
 
 const TRACKER_TEXT = `
 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
@@ -364,14 +364,16 @@ const TRACKER_TEXT = `
 | 10 | michael austin | 9 | 14 | 32 | 43 | 11 | 6 | N |  |  |  |  |  |  |  |  |  |
 | 10 | James Keller | 8 | 14 | 44 | 43 | 1 | 7 | N |  |  |  |  |  |  |  |  |  |
 | 10 | Cheyenne k | 7 | 14 | 47 | 43 | 4 | 8 | N |  |  |  |  |  |  |  |  |  |
+| 11 | Rob | 10 | 13 | 49 | 42 | 7 | 1 | Y |  |  |  |  |  |  |  |  |  |
+| 11 | Devon Bacskay | 9 | 13 | 53 | 42 | 11 | 2 | N |  |  |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | Season Standings |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | Season Rank | Name | Total Correct | Total Games Graded | Weeks Won | Avg Tiebreaker Diff |  |  |  |  |  |  |  |  |  |  |  |  |
 | 1 | michael owens | 101 | 150 | 0 | 12.4 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 2 | Kris Z | 91 | 134 | 2 | 11 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 3 | James Keller | 88 | 135 | 2 | 14.22 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 4 | Devon Bacskay | 84 | 150 | 0 | 11.6 |  |  |  |  |  |  |  |  |  |  |  |  |
-| 5 | Rob | 80 | 134 | 1 | 16.67 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 2 | Devon Bacskay | 93 | 163 | 0 | 11.55 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 3 | Kris Z | 91 | 134 | 2 | 11 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 4 | Rob | 90 | 147 | 2 | 15.7 |  |  |  |  |  |  |  |  |  |  |  |  |
+| 5 | James Keller | 88 | 135 | 2 | 14.22 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 6 | Boomer | 70 | 121 | 0 | 16.88 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 7 | Quick | 62 | 105 | 1 | 17.71 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 8 | Matt craven | 49 | 75 | 1 | 12.6 |  |  |  |  |  |  |  |  |  |  |  |  |
@@ -386,17 +388,11 @@ const TRACKER_TEXT = `
 | 16 | Roshini | 8 | 16 | 0 | 32 |  |  |  |  |  |  |  |  |  |  |  |  |
 | 18 | Zach Bacskay | 7 | 16 | 0 | 7 |  |  |  |  |  |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| Week 10 Picks |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| Name | WSH@NYG | NE@DET | KC@ATL | BUF@NYJ | CAR@NO | HOU@CLE | MIN@GB | MIA@IND | JAX@TEN | LAR@ARI | SEA@LV | SF@DAL | PIT@CIN | LAC@BAL | TB Guess |
-| ACTUAL RESULT | Washington Commanders | Detroit Lions | Kansas City Chiefs | Buffalo Bills | Carolina Panthers | Cleveland Browns | Minnesota Vikings | Indianapolis Colts | Jacksonville Jaguars | Los Angeles Rams | Seattle Seahawks | San Francisco 49ers | Cincinnati Bengals | Los Angeles Chargers | 43 |
-| Kris Z | New York Giants | Detroit Lions | Kansas City Chiefs | Buffalo Bills | Carolina Panthers | Cleveland Browns | Minnesota Vikings | Indianapolis Colts | Jacksonville Jaguars | Los Angeles Rams | Seattle Seahawks | San Francisco 49ers | Cincinnati Bengals | Baltimore Ravens | 44 |
-| michael owens | New York Giants | Detroit Lions | Kansas City Chiefs | Buffalo Bills | Carolina Panthers | Cleveland Browns | Green Bay Packers | Indianapolis Colts | Jacksonville Jaguars | Los Angeles Rams | Seattle Seahawks | San Francisco 49ers | Cincinnati Bengals | Baltimore Ravens | 36 |
-| Devon Bacskay | New York Giants | Detroit Lions | Kansas City Chiefs | Buffalo Bills | Carolina Panthers | Houston Texans | Green Bay Packers | Miami Dolphins | Jacksonville Jaguars | Los Angeles Rams | Seattle Seahawks | San Francisco 49ers | Cincinnati Bengals | Baltimore Ravens | 37 |
-| Rob | New York Giants | Detroit Lions | Kansas City Chiefs | Buffalo Bills | New Orleans Saints | Cleveland Browns | Green Bay Packers | Indianapolis Colts | Jacksonville Jaguars | Arizona Cardinals | Seattle Seahawks | San Francisco 49ers | Cincinnati Bengals | Baltimore Ravens | 36 |
-| Vanessa renteria | Washington Commanders | Detroit Lions | Atlanta Falcons | Buffalo Bills | New Orleans Saints | Cleveland Browns | Minnesota Vikings | Indianapolis Colts | Jacksonville Jaguars | Los Angeles Rams | Las Vegas Raiders | San Francisco 49ers | Pittsburgh Steelers | Baltimore Ravens | 35 |
-| michael austin | New York Giants | Detroit Lions | Kansas City Chiefs | Buffalo Bills | Carolina Panthers | Houston Texans | Green Bay Packers | Miami Dolphins | Jacksonville Jaguars | Los Angeles Rams | Seattle Seahawks | San Francisco 49ers | Cincinnati Bengals | Baltimore Ravens | 32 |
-| James Keller | New York Giants | New England Patriots | Kansas City Chiefs | Buffalo Bills | Carolina Panthers | Houston Texans | Green Bay Packers | Miami Dolphins | Jacksonville Jaguars | Los Angeles Rams | Seattle Seahawks | San Francisco 49ers | Cincinnati Bengals | Baltimore Ravens | 44 |
-| Cheyenne k | New York Giants | New England Patriots | Kansas City Chiefs | Buffalo Bills | New Orleans Saints | Cleveland Browns | Green Bay Packers | Indianapolis Colts | Tennessee Titans | Los Angeles Rams | Seattle Seahawks | San Francisco 49ers | Pittsburgh Steelers | Baltimore Ravens | 47 |
+| Week 11 Picks |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Name | IND@HOU | ARI@KC | BAL@CAR | MIA@BUF | NO@CHI | TEN@DAL | TB@DET | PIT@PHI | NYJ@LAC | LV@DEN | JAX@NYG | MIN@SF | CIN@WSH | TB Guess |
+| ACTUAL RESULT | Houston Texans | Kansas City Chiefs | Carolina Panthers | Buffalo Bills | Chicago Bears | Dallas Cowboys | Detroit Lions | Philadelphia Eagles | New York Jets | Denver Broncos | New York Giants | San Francisco 49ers | Washington Commanders | 42 |
+| Rob | Houston Texans | Kansas City Chiefs | Carolina Panthers | Buffalo Bills | Chicago Bears | Dallas Cowboys | Detroit Lions | Pittsburgh Steelers | New York Jets | Denver Broncos | Jacksonville Jaguars | San Francisco 49ers | Cincinnati Bengals | 49 |
+| Devon Bacskay | Houston Texans | Kansas City Chiefs | Baltimore Ravens | Buffalo Bills | Chicago Bears | Dallas Cowboys | Detroit Lions | Pittsburgh Steelers | New York Jets | Denver Broncos | Jacksonville Jaguars | San Francisco 49ers | Cincinnati Bengals | 53 |
 `;
 
 function esc(s) {
@@ -586,7 +582,7 @@ function renderLeaderboard() {
 // than recreating questions) keeps these IDs valid.
 const CURRENT_WEEK = 11;
 // Picks close once the first game of the week kicks off — update this every week to
-// match Game 1's kickoff time (in UTC). Thu 11/19/2026 8:15 PM ET (EST, UTC-5) = below.
+// match Game 1's kickoff time (in UTC). Week 11 override: lock moved to Sun 11/22/2026 1:00 PM ET (EST, UTC-5) = below.
 const PICKS_LOCK_AT = "2026-11-22T18:00:00Z";
 function isPicksLocked() {
   return Date.now() >= new Date(PICKS_LOCK_AT).getTime();
@@ -1046,6 +1042,5 @@ renderPicksTab();
 loadLivePicks();
 loadLiveGrades();
 </script>
-
 </body>
 </html>
